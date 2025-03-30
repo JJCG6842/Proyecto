@@ -15,7 +15,7 @@ export type MenuItem={
   imports: [MatListModule,MatIconModule,RouterLink,RouterLinkActive],
   template: `
   <div class="sidenav-header">
-    <img src="icon.gif" alt="" [width]="profilePicSize()">
+    <img src="logo1.PNG" alt="" [width]="profilePicSize()">
     <div class="header-text" [class.hide-header-text]="sideNavCollpsed()">
       <h2>Luxury Travel Perú</h2>
       <p>Gestor de cotizciones de turismo</p>
