@@ -1,0 +1,89 @@
+*{
+    font-family: "Open Sans", sans-serif;
+}
+.container-cover{
+    bottom: 40px;
+    width: 100%;
+    height: 350px;
+    position: relative;
+    background-image: url(../img/img1.webp);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.container-cover:before{
+    content: '';
+    width: 100%;
+    background: black;
+    position: absolute;
+    opacity: 0.4;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.text1{
+    color: white;
+    font-size: 52px;
+    font-family:"Open Sans", sans-serif;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 120px;
+}
+
+.minitext1{
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 120px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.minitext2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 28px;
+    font-family: "Open Sans", sans-serif;
+}
+
+mat-card{
+    width: 340px;
+    height: auto;
+    display: flex;
+}
+
+h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-container {
+    position: relative;
+    top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px; /* Espacio entre las tarjetas */
+  }
+  
+  mat-card {
+    flex: 1 1 calc(25% - 16px); /* Cada tarjeta ocupa el 25% del contenedor (4 por fila) */
+    box-sizing: border-box;
+  }
+
+.imagen2{
+    background-image: url(../img/img2.webp);
+}
+
+.footer{
+    width: 100%;
+    height: auto;
+    background: black;
+}

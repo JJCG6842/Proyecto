@@ -100,7 +100,7 @@ export class MenuComponent {
     },
     {
       icon:'apps',
-      label:'Tours Disponibles',
+      label:'Tours e Informacion',
       route:'paquete'
     },
     {

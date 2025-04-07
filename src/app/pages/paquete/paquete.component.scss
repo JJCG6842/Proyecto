@@ -1,5 +1,29 @@
 mat-card{
-    width: 350px;
+    width: 280px;
     height: auto;
+    display: flex;
 }
+
+img{
+    width: 100%;
+    position: relative;
+    left: 0px;
+    top: -10px;
+}
+button:hover{
+    background: rgb(247, 97, 97);
+}
+
+//separacion de 4 tarjetas por fila
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Espacio entre las tarjetas */
+  }
+  
+  mat-card {
+    flex: 1 1 calc(25% - 16px); /* Cada tarjeta ocupa el 25% del contenedor (4 por fila) */
+    box-sizing: border-box;
+  }
+
 
