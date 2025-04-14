@@ -19,13 +19,13 @@ import { DOCUMENT } from '@angular/common';
     MenuComponent
 ],
   template: `
-  <mat-toolbar class="">
+  <mat-toolbar class="" style="background: rgb(219, 33, 33);">
     <button mat-icon-button (click)="collapsed.set(!collapsed())">
-      <mat-icon>menu</mat-icon>
+      <mat-icon style="color:white">menu</mat-icon>
     </button>
     <span class="example-spacer"></span>
     <button mat-icon-button (click)="isDarkMode.set(!isDarkMode())">
-      <mat-icon >
+      <mat-icon style="color:white">
         {{isDarkMode()?'dark_mode':'light_mode'}}
       </mat-icon>
     </button>

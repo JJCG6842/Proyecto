@@ -3780,6 +3780,21 @@ function takeUntil(notifier) {
   });
 }
 
+// node_modules/rxjs/dist/esm5/internal/operators/takeWhile.js
+function takeWhile(predicate, inclusive) {
+  if (inclusive === void 0) {
+    inclusive = false;
+  }
+  return operate(function(source, subscriber) {
+    var index = 0;
+    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
+      var result = predicate(value, index++);
+      (result || inclusive) && subscriber.next(value);
+      !result && subscriber.complete();
+    }));
+  });
+}
+
 // node_modules/rxjs/dist/esm5/internal/operators/tap.js
 function tap(observerOrNext, error, complete) {
   var tapObserver = isFunction(observerOrNext) || error || complete ? {
@@ -29806,6 +29821,7 @@ export {
   startWith,
   switchMap,
   takeUntil,
+  takeWhile,
   tap,
   XSS_SECURITY_URL,
   RuntimeError,
@@ -30354,4 +30370,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-THINJW6K.js.map
+//# sourceMappingURL=chunk-AW5AIWFJ.js.map

@@ -1,6 +1,6 @@
 import {
   isPlatformBrowser
-} from "./chunk-EH3DCNJV.js";
+} from "./chunk-IY42WUIH.js";
 import {
   ElementRef,
   Injectable,
@@ -12,7 +12,33 @@ import {
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-THINJW6K.js";
+} from "./chunk-AW5AIWFJ.js";
+
+// node_modules/@angular/cdk/fesm2022/coercion.mjs
+function coerceBooleanProperty(value) {
+  return value != null && `${value}` !== "false";
+}
+function coerceNumberProperty(value, fallbackValue = 0) {
+  if (_isNumberValue(value)) {
+    return Number(value);
+  }
+  return arguments.length === 2 ? fallbackValue : 0;
+}
+function _isNumberValue(value) {
+  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
+}
+function coerceArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+function coerceCssPixelValue(value) {
+  if (value == null) {
+    return "";
+  }
+  return typeof value === "string" ? value : `${value}px`;
+}
+function coerceElement(elementOrRef) {
+  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
+}
 
 // node_modules/@angular/cdk/fesm2022/platform.mjs
 var hasV8BreakIterator;
@@ -89,6 +115,50 @@ var PlatformModule = class _PlatformModule {
     args: [{}]
   }], null, null);
 })();
+var supportedInputTypes;
+var candidateInputTypes = [
+  // `color` must come first. Chrome 56 shows a warning if we change the type to `color` after
+  // first changing it to something else:
+  // The specified value "" does not conform to the required format.
+  // The format is "#rrggbb" where rr, gg, bb are two-digit hexadecimal numbers.
+  "color",
+  "button",
+  "checkbox",
+  "date",
+  "datetime-local",
+  "email",
+  "file",
+  "hidden",
+  "image",
+  "month",
+  "number",
+  "password",
+  "radio",
+  "range",
+  "reset",
+  "search",
+  "submit",
+  "tel",
+  "text",
+  "time",
+  "url",
+  "week"
+];
+function getSupportedInputTypes() {
+  if (supportedInputTypes) {
+    return supportedInputTypes;
+  }
+  if (typeof document !== "object" || !document) {
+    supportedInputTypes = new Set(candidateInputTypes);
+    return supportedInputTypes;
+  }
+  let featureTestInput = document.createElement("input");
+  supportedInputTypes = new Set(candidateInputTypes.filter((value) => {
+    featureTestInput.setAttribute("type", value);
+    return featureTestInput.type === value;
+  }));
+  return supportedInputTypes;
+}
 var supportsPassiveEvents;
 function supportsPassiveEventListeners() {
   if (supportsPassiveEvents == null && typeof window !== "undefined") {
@@ -192,6 +262,15 @@ function _getFocusedElementPierceShadowDom() {
 function _getEventTarget(event) {
   return event.composedPath ? event.composedPath()[0] : event.target;
 }
+function _isTestEnvironment() {
+  return (
+    // @ts-ignore
+    typeof __karma__ !== "undefined" && !!__karma__ || // @ts-ignore
+    typeof jasmine !== "undefined" && !!jasmine || // @ts-ignore
+    typeof jest !== "undefined" && !!jest || // @ts-ignore
+    typeof Mocha !== "undefined" && !!Mocha
+  );
+}
 function _bindEventWithOptions(renderer, target, eventName, callback, options) {
   const major = parseInt(VERSION.major);
   const minor = parseInt(VERSION.minor);
@@ -204,28 +283,14 @@ function _bindEventWithOptions(renderer, target, eventName, callback, options) {
   };
 }
 
-// node_modules/@angular/cdk/fesm2022/coercion.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
-function coerceNumberProperty(value, fallbackValue = 0) {
-  if (_isNumberValue(value)) {
-    return Number(value);
-  }
-  return arguments.length === 2 ? fallbackValue : 0;
-}
-function _isNumberValue(value) {
-  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
-}
-function coerceArray(value) {
-  return Array.isArray(value) ? value : [value];
-}
-function coerceElement(elementOrRef) {
-  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
-}
-
 export {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  coerceArray,
+  coerceCssPixelValue,
+  coerceElement,
   Platform,
+  getSupportedInputTypes,
   normalizePassiveListenerOptions,
   RtlScrollAxisType,
   supportsScrollBehavior,
@@ -233,10 +298,7 @@ export {
   _getShadowRoot,
   _getFocusedElementPierceShadowDom,
   _getEventTarget,
-  _bindEventWithOptions,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  coerceArray,
-  coerceElement
+  _isTestEnvironment,
+  _bindEventWithOptions
 };
-//# sourceMappingURL=chunk-YNQDB2AT.js.map
+//# sourceMappingURL=chunk-X4YULHDC.js.map
