@@ -1,3 +1,40 @@
 <div style="display: flex; justify-content: center; align-items: center;">
     <h2 class="title">Menu de reservas</h2>
 </div>
+
+<div class="container">
+    <form>
+        <mat-form-field>
+            <mat-label>Nombre:</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input
+              matInput
+              placeholder="nose@example.com"
+              [formControl]="email"
+              (blur)="updateErrorMessage()"
+              required
+            />
+            @if (email.invalid) {
+              <mat-error>{{errorMessage()}}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Destinos Turisticos</mat-label>
+            <mat-select>
+              <mat-option value="one">Libertad Americana(wari)</mat-option>
+              <mat-option value="dos">City Tour Tradicional(Huamanga)</mat-option>
+              <mat-option value="tres">Aguas Tuquesas Millpu</mat-option>
+              <mat-option value="cuatro">Laguna Azul(el caribe andino)</mat-option>
+              <mat-option value="cinco">Ruta del Inca - Vilcashuaman</mat-option>
+              <mat-option value="sies">Piscinas Termales - Colpa</mat-option>
+              <mat-option value="siete">Aguas Termales - Pachapupum</mat-option>
+              <mat-option value="ocho">Cañones de Qorihuillca - grietas</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </form>
+</div>

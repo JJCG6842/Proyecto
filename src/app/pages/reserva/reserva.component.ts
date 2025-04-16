@@ -1,11 +1,35 @@
-import { Component } from '@angular/core';
+import { Component,signal } from '@angular/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {MatInputModule} from '@angular/material/input';
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {merge} from 'rxjs';
 
 @Component({
   selector: 'app-reserva',
-  imports: [],
+  imports: [MatFormFieldModule,MatInputModule,MatSelectModule,FormsModule, ReactiveFormsModule],
   templateUrl: './reserva.component.html',
   styleUrl: './reserva.component.scss'
 })
 export class ReservaComponent {
+  readonly email = new FormControl('', [Validators.required, Validators.email]);
 
+  errorMessage = signal('');
+
+  constructor() {
+    merge(this.email.statusChanges, this.email.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessage());
+  }
+
+  updateErrorMessage() {
+    if (this.email.hasError('required')) {
+      this.errorMessage.set('You must enter a value');
+    } else if (this.email.hasError('email')) {
+      this.errorMessage.set('Not a valid email');
+    } else {
+      this.errorMessage.set('');
+    }
+  }
 }
