@@ -18,7 +18,7 @@ export type MenuItem={
     <img src="logo1.PNG" alt="" [width]="profilePicSize()">
     <div class="header-text" [class.hide-header-text]="sideNavCollpsed()">
       <h2>Luxury Travel Perú</h2>
-      <p>Gestor de cotizciones de turismo</p>
+      <p>Gestor de cotizaciones de turismo</p>
     </div>
   </div>
   <mat-nav-list>

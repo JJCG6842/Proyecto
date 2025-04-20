@@ -2,15 +2,17 @@
     <h2 class="title">Menu de reservas</h2>
 </div>
 
+
 <div class="container">
     <form>
+      <div class="row">
         <mat-form-field>
-            <mat-label>Nombre:</mat-label>
+            <mat-label>Nombre y apellido:</mat-label>
             <input matInput>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Enter your email</mat-label>
+            <mat-label>Email:</mat-label>
             <input
               matInput
               placeholder="nose@example.com"
@@ -24,7 +26,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Destinos Turisticos</mat-label>
+            <mat-label>Destino Turistico</mat-label>
             <mat-select>
               <mat-option value="one">Libertad Americana(wari)</mat-option>
               <mat-option value="dos">City Tour Tradicional(Huamanga)</mat-option>
@@ -36,5 +38,58 @@
               <mat-option value="ocho">Cañones de Qorihuillca - grietas</mat-option>
             </mat-select>
           </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Hora de inicio</mat-label>
+            <input matInput [matTimepicker]="timePicker">
+            <mat-timepicker-toggle matIconSuffix [for]="timePicker"></mat-timepicker-toggle>
+            <mat-timepicker #timePicker></mat-timepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de llegada:</mat-label>
+            <input matInput [matDatepicker]="arrivalPicker">
+            <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+            <mat-datepicker #arrivalPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de salida:</mat-label>
+            <input matInput [matDatepicker]="departurePicker">
+            <mat-datepicker-toggle matSuffix [for]="departurePicker"></mat-datepicker-toggle>
+            <mat-datepicker #departurePicker></mat-datepicker>
+          </mat-form-field>
+
+          <div style="text-align: right; width: 100%;">
+            <button mat-flat-button style="background: rgb(243, 29, 29); color: white; position: relative; right: 15px;">
+              Registrar reserva
+            </button>
+            <button mat-flat-button style="background: rgb(243, 29, 29); color: white;">Ver reservas</button>
+          </div>
+
+        </div>
     </form>
+
 </div>
+
+
+
+<h2 style="position: relative; top: 38px;">Reservas recientes:</h2>
+
+<div class="section-reserva">
+  <div class="content-reserva"></div>
+</div>
+
+<div class="section-reserva">
+  <div class="content-reserva"></div>
+</div>
+
+<div class="section-reserva">
+  <div class="content-reserva"></div>
+</div>
+
+<br><br><br><br>
+
+
+
+

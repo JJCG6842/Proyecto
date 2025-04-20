@@ -17,6 +17,9 @@
             <p>Una seccion donde puede realizar cotizaciones a los clientes sobre
                 sobre los destinos turisticos,costos y beneficios de los servicios turísticos.
             </p>
+            <button mat-flat-button style="justify-content: center; align-items: center; background: red; color: white;" (click)="irCotizacion()">
+                Ir a cotizaciones
+            </button>
         </mat-card-content>
     </mat-card>
     
@@ -28,6 +31,9 @@
             <p>Una seccion donde puede ver los destinos turisticos disponibles,duracion y ver informacion 
                acerca del destino turistico con su descripción y precio.
             </p>
+            <button mat-flat-button style="justify-content: center; align-items: center; background: red; color: white;" (click)="irTours()">
+                Ver tours disponibles
+            </button>
         </mat-card-content>
     </mat-card>
     
@@ -39,15 +45,43 @@
             <p>Una seccion para asegurar un servicio o espacio para una fecha específica, 
                 como un vuelo, hotel, excursión o actividad, a nombre de una persona o grupo.
             </p>
+            <button mat-flat-button style="justify-content: center; align-items: center; background: red; color: white;" (click)="irReservas()">
+                Ir a reservas
+            </button>
         </mat-card-content>
     </mat-card>
 </div>
 
 <br><br>
 <footer>
-    <div class="footer">
+    <mat-card appearance="outlined" style="background: black; color: white; width: 100%; height: 160px; border: none; border-radius: 0px;">
+      <mat-card-content style="display: flex; justify-content: space-between; align-items: flex-start; padding: 16px;">
         
-    </div>
-</footer>
+        <div class="footer-section" style="position: relative; top: 10px; left: 20px;">
+          <div class="footer-title">Dirección</div>
+          <div class="footer-text" style="width: 360px;">
+            <p style="font-size: 14px;">Jr. 9 de Diciembre #115 - (a media cuadra de la plaza mayor - Ayacucho) - Perú</p>
+          </div>
+        </div>
+  
+        <div class="footer-section">
+          <div class="footer-title" style="position: relative; right: 120px;">Teléfono</div>
+          <div class="footer-text" style="position: relative; right: 120px;">
+            <p>Whatsapp: +51 927 563 763</p>
+            <button mat-flat-button style="background: rgb(23, 197, 23); color: white;">Contáctenos</button>
+          </div>
+        </div>
+  
+        <!-- Email -->
+        <div class="footer-section">
+          <div class="footer-title" style="position: relative; right: 220px;">Email</div>
+          <div class="footer-text" style="position: relative; right: 220px;">
+            <p>Escríbenos a este correo:</p>
+          </div>
+        </div>
+  
+      </mat-card-content>
+    </mat-card>
+  </footer>
 <br><br>
 

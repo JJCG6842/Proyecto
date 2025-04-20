@@ -4,6 +4,7 @@ import { CotizacionesComponent } from './pages/cotizaciones/cotizaciones.compone
 import { PaqueteComponent } from './pages/paquete/paquete.component';
 import { ReservaComponent } from './pages/reserva/reserva.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
+import { ListaCotizacionesComponent } from './pages/cotizaciones/lista-cotizaciones/lista-cotizaciones.component';
 
 export const routes: Routes = [
   {
@@ -31,5 +32,6 @@ export const routes: Routes = [
   {
     path:'clientes',
     component: ClientesComponent
-  }
+  },
+  { path: 'lista-cotizaciones', component: ListaCotizacionesComponent },
 ];

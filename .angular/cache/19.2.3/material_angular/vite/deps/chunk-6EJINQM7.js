@@ -1,7 +1,4 @@
 import {
-  BidiModule
-} from "./chunk-UBGM4B6N.js";
-import {
   _CdkPrivateStyleLoader,
   _VisuallyHiddenLoader
 } from "./chunk-6Y7T4UFD.js";
@@ -15,7 +12,10 @@ import {
   coerceElement,
   coerceNumberProperty,
   normalizePassiveListenerOptions
-} from "./chunk-SXBRPK5L.js";
+} from "./chunk-F326XR6Z.js";
+import {
+  BidiModule
+} from "./chunk-UBGM4B6N.js";
 import {
   DOCUMENT
 } from "./chunk-LL5RF35Z.js";
@@ -99,6 +99,7 @@ import {
 } from "./chunk-S35MAB2V.js";
 
 // node_modules/@angular/cdk/fesm2022/keycodes.mjs
+var BACKSPACE = 8;
 var TAB = 9;
 var ENTER = 13;
 var SHIFT = 16;
@@ -5180,9 +5181,15 @@ var _MatInternalFormField = class __MatInternalFormField {
 })();
 
 export {
+  BACKSPACE,
+  TAB,
   ENTER,
   ESCAPE,
   SPACE,
+  PAGE_UP,
+  PAGE_DOWN,
+  END,
+  HOME,
   LEFT_ARROW,
   UP_ARROW,
   RIGHT_ARROW,
@@ -5197,8 +5204,11 @@ export {
   FocusKeyManager,
   InteractivityChecker,
   FocusTrapFactory,
+  CdkTrapFocus,
   LiveAnnouncer,
   FocusMonitor,
+  CdkMonitorFocus,
+  A11yModule,
   _IdGenerator,
   VERSION,
   AnimationCurves,
@@ -5241,4 +5251,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-VS7AOA4W.js.map
+//# sourceMappingURL=chunk-6EJINQM7.js.map

@@ -1,16 +1,23 @@
-import { Component,signal } from '@angular/core';
+import { Component,signal} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatInputModule} from '@angular/material/input';
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
 import {merge} from 'rxjs';
+import {MatTimepickerModule} from '@angular/material/timepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-reserva',
-  imports: [MatFormFieldModule,MatInputModule,MatSelectModule,FormsModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule,MatInputModule,MatSelectModule,FormsModule, ReactiveFormsModule, MatButtonModule,MatTimepickerModule,MatDatepickerModule,MatNativeDateModule
+  ],
   templateUrl: './reserva.component.html',
-  styleUrl: './reserva.component.scss'
+  styleUrl: './reserva.component.scss',
+  providers: [provideNativeDateAdapter()]
 })
 export class ReservaComponent {
   readonly email = new FormControl('', [Validators.required, Validators.email]);

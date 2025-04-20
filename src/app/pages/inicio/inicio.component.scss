@@ -70,11 +70,11 @@ h2{
     top: 20px;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px; /* Espacio entre las tarjetas */
+    gap: 50px; 
   }
   
   mat-card {
-    flex: 1 1 calc(25% - 16px); /* Cada tarjeta ocupa el 25% del contenedor (4 por fila) */
+    flex: 1 1 calc(25% - 16px);
     box-sizing: border-box;
   }
 
@@ -82,8 +82,41 @@ h2{
     background-image: url(../img/img2.webp);
 }
 
-.footer{
-    width: 100%;
-    height: auto;
-    background: black;
+/*
+.footer-text1{
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 40px;
+    position: relative;
+    top: 8px;
 }
+
+.footer-minitext1{
+    width: 340px;
+    padding-left: 40px;
+    position: relative;
+    font-size: 14px;
+    top: 8px;
+}
+
+.footer-text2{
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+}
+
+
+.footer-text3{
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+}
+*/
+
+.footer-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
