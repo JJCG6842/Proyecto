@@ -7,6 +7,7 @@ import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angula
 import {MatButtonModule} from '@angular/material/button';
 import {merge} from 'rxjs';
 import {MatTimepickerModule} from '@angular/material/timepicker';
+import { Router } from '@angular/router';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,12 +20,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
   styleUrl: './reserva.component.scss',
   providers: [provideNativeDateAdapter()]
 })
+
 export class ReservaComponent {
   readonly email = new FormControl('', [Validators.required, Validators.email]);
-
   errorMessage = signal('');
 
-  constructor() {
+  constructor(private router: Router) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
@@ -38,5 +39,9 @@ export class ReservaComponent {
     } else {
       this.errorMessage.set('');
     }
+  }
+
+  verReserva() {
+    this.router.navigate(['/reserva-detail']);
   }
 }

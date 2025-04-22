@@ -6,6 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatTimepickerModule} from '@angular/material/timepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @Component({
   selector: 'app-cotizaciones',
@@ -17,6 +20,9 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatTimepickerModule,
+    MatNativeDateModule
   ],
   templateUrl: './cotizaciones.component.html',
   styleUrls: ['./cotizaciones.component.scss'] 

@@ -22,9 +22,11 @@
                 </mat-select>
               </mat-form-field>
 
-              <mat-form-field>
-                <mat-label>Fecha de viaje</mat-label>
-                <input matInput>
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha de viaje:</mat-label>
+                <input matInput [matDatepicker]="datePickerFecha">
+                <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
+                <mat-datepicker #datePickerFecha></mat-datepicker>
               </mat-form-field>
 
               <mat-form-field>
@@ -33,13 +35,17 @@
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Hora Inicio</mat-label>
-                <input matInput>
+                <mat-label>Hora de inicio</mat-label>
+                <input matInput [matTimepicker]="timePickerInicio">
+                <mat-timepicker-toggle matIconSuffix [for]="timePickerInicio"></mat-timepicker-toggle>
+                <mat-timepicker #timePickerInicio></mat-timepicker>
               </mat-form-field>
-            
+              
               <mat-form-field>
-                <mat-label>Hora Retorno</mat-label>
-                <input matInput>
+                <mat-label>Hora de retorno</mat-label>
+                <input matInput [matTimepicker]="timePickerRetorno">
+                <mat-timepicker-toggle matIconSuffix [for]="timePickerRetorno"></mat-timepicker-toggle>
+                <mat-timepicker #timePickerRetorno></mat-timepicker>
               </mat-form-field>
 
               <mat-form-field floatLabel="always">
@@ -56,13 +62,15 @@
                 <span matTextSuffix>.00</span>
               </mat-form-field>
 
-              <mat-form-field>
-                <mat-label>Fecha de emision</mat-label>
-                <input matInput>
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha de emision:</mat-label>
+                <input matInput [matDatepicker]="arrivalPicker">
+                <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+                <mat-datepicker #arrivalPicker></mat-datepicker>
               </mat-form-field>
         </div>
 
-        <!-- Botones alineados a la derecha -->
+        
         <div class="botones">
             <button class="boton1">Agregar registro</button>
             <button class="boton2" (click)="verRegistro()">Ver registros</button>

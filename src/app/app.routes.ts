@@ -5,6 +5,7 @@ import { PaqueteComponent } from './pages/paquete/paquete.component';
 import { ReservaComponent } from './pages/reserva/reserva.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ListaCotizacionesComponent } from './pages/cotizaciones/lista-cotizaciones/lista-cotizaciones.component';
+import { ReservaDetailComponent } from './pages/reserva/reserva-detail/reserva-detail.component';
 
 export const routes: Routes = [
   {
@@ -33,5 +34,10 @@ export const routes: Routes = [
     path:'clientes',
     component: ClientesComponent
   },
-  { path: 'lista-cotizaciones', component: ListaCotizacionesComponent },
+  { path: 'lista-cotizaciones', 
+    component: ListaCotizacionesComponent },
+  {
+    path:'reserva-detail',
+    component: ReservaDetailComponent
+  },
 ];
