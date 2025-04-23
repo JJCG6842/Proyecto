@@ -1,7 +1,4 @@
 import {
-  BidiModule
-} from "./chunk-UBGM4B6N.js";
-import {
   _CdkPrivateStyleLoader,
   _VisuallyHiddenLoader
 } from "./chunk-6Y7T4UFD.js";
@@ -15,7 +12,10 @@ import {
   coerceElement,
   coerceNumberProperty,
   normalizePassiveListenerOptions
-} from "./chunk-LGAHMOHH.js";
+} from "./chunk-NNHXUE4S.js";
+import {
+  BidiModule
+} from "./chunk-UBGM4B6N.js";
 import {
   DOCUMENT
 } from "./chunk-LL5RF35Z.js";
@@ -5251,4 +5251,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-OXYZMOXG.js.map
+//# sourceMappingURL=chunk-GP5UE2KI.js.map

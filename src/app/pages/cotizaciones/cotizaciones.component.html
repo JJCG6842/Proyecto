@@ -4,78 +4,83 @@
 
 
 <div class="container1">
-    <div class="formulario">
-        <h2 style="color: white;">Registrar cotización:</h2>
-        <div class="input-grid">
-            
-            <mat-form-field>
-                <mat-label>Destinos Turisticos</mat-label>
-                <mat-select>
-                  <mat-option value="one">Libertad Americana(wari)</mat-option>
-                  <mat-option value="dos">City Tour Tradicional(Huamanga)</mat-option>
-                  <mat-option value="tres">Aguas Tuquesas Millpu</mat-option>
-                  <mat-option value="cuatro">Laguna Azul(el caribe andino)</mat-option>
-                  <mat-option value="cinco">Ruta del Inca - Vilcashuaman</mat-option>
-                  <mat-option value="sies">Piscinas Termales - Colpa</mat-option>
-                  <mat-option value="siete">Aguas Termales - Pachapupum</mat-option>
-                  <mat-option value="ocho">Cañones de Qorihuillca - grietas</mat-option>
-                </mat-select>
-              </mat-form-field>
+  <div class="formulario">
+    <h2 style="color: white;">Registrar cotización:</h2>
+    <form class="input-grid">
+      <mat-form-field>
+        <mat-label>Destinos Turísticos</mat-label>
+        <mat-select [formControl]="destino">
+          <mat-option value="Libertad Americana (Wari)">Libertad Americana (Wari)</mat-option>
+          <mat-option value="City Tour Tradicional (Huamanga)">City Tour Tradicional (Huamanga)</mat-option>
+          <mat-option value="Aguas Turquesas Millpu">Aguas Turquesas Millpu</mat-option>
+          <mat-option value="Laguna Azul (El Caribe Andino)">Laguna Azul (El Caribe Andino)</mat-option>
+          <mat-option value="Ruta del Inca - Vilcashuamán">Ruta del Inca - Vilcashuamán</mat-option>
+          <mat-option value="Piscinas Termales - Colpa">Piscinas Termales - Colpa</mat-option>
+          <mat-option value="Aguas Termales - Pachapupum">Aguas Termales - Pachapupum</mat-option>
+          <mat-option value="Cañones de Qorihuillca - Grietas">Cañones de Qorihuillca - Grietas</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-              <mat-form-field appearance="fill">
-                <mat-label>Fecha de viaje:</mat-label>
-                <input matInput [matDatepicker]="datePickerFecha">
-                <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
-                <mat-datepicker #datePickerFecha></mat-datepicker>
-              </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de viaje:</mat-label>
+        <input matInput [matDatepicker]="datePickerFecha" [formControl]="fecha">
+        <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
+        <mat-datepicker #datePickerFecha></mat-datepicker>
+      </mat-form-field>
 
-              <mat-form-field>
-                <mat-label>Nº de personas</mat-label>
-                <input matInput>
-              </mat-form-field>
+      <mat-form-field>
+        <mat-label>Nº de personas</mat-label>
+        <input matInput [formControl]="personas">
+      </mat-form-field>
 
-              <mat-form-field>
-                <mat-label>Hora de inicio</mat-label>
-                <input matInput [matTimepicker]="timePickerInicio">
-                <mat-timepicker-toggle matIconSuffix [for]="timePickerInicio"></mat-timepicker-toggle>
-                <mat-timepicker #timePickerInicio></mat-timepicker>
-              </mat-form-field>
-              
-              <mat-form-field>
-                <mat-label>Hora de retorno</mat-label>
-                <input matInput [matTimepicker]="timePickerRetorno">
-                <mat-timepicker-toggle matIconSuffix [for]="timePickerRetorno"></mat-timepicker-toggle>
-                <mat-timepicker #timePickerRetorno></mat-timepicker>
-              </mat-form-field>
+      <mat-form-field>
+        <mat-label>Hora de inicio</mat-label>
+        <input matInput [matTimepicker]="timePickerInicio" [formControl]="horainicio">
+        <mat-timepicker-toggle matIconSuffix [for]="timePickerInicio"></mat-timepicker-toggle>
+        <mat-timepicker #timePickerInicio></mat-timepicker>
+      </mat-form-field>
 
-              <mat-form-field floatLabel="always">
-                <mat-label>Costo de viaje</mat-label>
-                <input matInput type="number" class="example-right-align" placeholder="0" />
-                <span matTextPrefix>$&nbsp;</span>
-                <span matTextSuffix>.00</span>
-              </mat-form-field>
+      <mat-form-field>
+        <mat-label>Hora de retorno</mat-label>
+        <input matInput [matTimepicker]="timePickerRetorno" [formControl]="horaretorno">
+        <mat-timepicker-toggle matIconSuffix [for]="timePickerRetorno"></mat-timepicker-toggle>
+        <mat-timepicker #timePickerRetorno></mat-timepicker>
+      </mat-form-field>
 
-              <mat-form-field floatLabel="always">
-                <mat-label>Monto total</mat-label>
-                <input matInput type="number" class="example-right-align" placeholder="0" />
-                <span matTextPrefix>$&nbsp;</span>
-                <span matTextSuffix>.00</span>
-              </mat-form-field>
+      <mat-form-field floatLabel="always">
+        <mat-label>Costo de viaje</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" [formControl]="costo"/>
+        <span matTextPrefix>$&nbsp;</span>
+        <span matTextSuffix>.00</span>
+      </mat-form-field>
 
-              <mat-form-field appearance="fill">
-                <mat-label>Fecha de emision:</mat-label>
-                <input matInput [matDatepicker]="arrivalPicker">
-                <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
-                <mat-datepicker #arrivalPicker></mat-datepicker>
-              </mat-form-field>
-        </div>
+      <mat-form-field floatLabel="always">
+        <mat-label>Monto total</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" [formControl]="total"/>
+        <span matTextPrefix>$&nbsp;</span>
+        <span matTextSuffix>.00</span>
+      </mat-form-field>
 
-        
-        <div class="botones">
-            <button class="boton1">Agregar registro</button>
-            <button class="boton2" (click)="verRegistro()">Ver registros</button>
-        </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de emisión:</mat-label>
+        <input matInput [matDatepicker]="arrivalPicker" [formControl]="emision">
+        <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+        <mat-datepicker #arrivalPicker></mat-datepicker>
+      </mat-form-field>
+    </form>
+
+    <div class="botones">
+      <button class="boton1" type="submit">Agregar registro</button>
+      <button class="boton2" (click)="verRegistro()">Ver registros</button>
     </div>
+  </div>
 </div>
 
+<br><br>
+
+{{destino.value}}
+{{fecha.value}}
+{{personas.value}}
+{{horainicio.value}}
+<br><br><br><br>
 
