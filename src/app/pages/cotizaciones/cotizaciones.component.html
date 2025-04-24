@@ -6,10 +6,12 @@
 <div class="container1">
   <div class="formulario">
     <h2 style="color: white;">Registrar cotización:</h2>
-    <form class="input-grid">
+
+    <form class="input-grid" [formGroup]="formCotizacion">
+      <div>
       <mat-form-field>
         <mat-label>Destinos Turísticos</mat-label>
-        <mat-select [formControl]="destino">
+        <mat-select formControlName="destino">
           <mat-option value="Libertad Americana (Wari)">Libertad Americana (Wari)</mat-option>
           <mat-option value="City Tour Tradicional (Huamanga)">City Tour Tradicional (Huamanga)</mat-option>
           <mat-option value="Aguas Turquesas Millpu">Aguas Turquesas Millpu</mat-option>
@@ -20,57 +22,122 @@
           <mat-option value="Cañones de Qorihuillca - Grietas">Cañones de Qorihuillca - Grietas</mat-option>
         </mat-select>
       </mat-form-field>
+      
+      <div [hidden]="destino.valid || destino.pristine" style="color: red;">
+        <span *ngIf="destino.errors?.['required']">El campo es requerido</span>
+      </div>
+      
+    </div>
 
+    <div>
       <mat-form-field appearance="fill">
         <mat-label>Fecha de viaje:</mat-label>
-        <input matInput [matDatepicker]="datePickerFecha" [formControl]="fecha">
+        <input matInput [matDatepicker]="datePickerFecha" formControlName="fecha">
         <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
         <mat-datepicker #datePickerFecha></mat-datepicker>
       </mat-form-field>
+      
+      <div [hidden]="fecha.valid || fecha.pristine" style="color: red;">
+        <span *ngIf="fecha.errors?.['required']">El campo es requerido</span>
+      </div>
+      
+    </div>
+    
 
+      <div>
       <mat-form-field>
         <mat-label>Nº de personas</mat-label>
-        <input matInput [formControl]="personas">
+        <input matInput formControlName="personas" type="number">
       </mat-form-field>
+      
+      <div [hidden]="personas.valid || personas.pristine" style="color: red;">
+        <span *ngIf="personas.errors?.['required']">El campo es requerido</span>
 
+        <span *ngIf="personas.errors?.['min']">Debe ser al menos 1</span>
+      </div>
+      
+    </div>
+      
+
+    <div>
       <mat-form-field>
         <mat-label>Hora de inicio</mat-label>
-        <input matInput [matTimepicker]="timePickerInicio" [formControl]="horainicio">
+        <input matInput [matTimepicker]="timePickerInicio" formControlName="horainicio">
         <mat-timepicker-toggle matIconSuffix [for]="timePickerInicio"></mat-timepicker-toggle>
         <mat-timepicker #timePickerInicio></mat-timepicker>
       </mat-form-field>
+      
+      <div [hidden]="horainicio.valid || horainicio.pristine" style="color: red;">
+        <span *ngIf="horainicio.errors?.['required']">El campo es requerido</span>
+      </div>
+      
+    </div>
 
+    <div>
       <mat-form-field>
         <mat-label>Hora de retorno</mat-label>
-        <input matInput [matTimepicker]="timePickerRetorno" [formControl]="horaretorno">
+        <input matInput [matTimepicker]="timePickerRetorno" formControlName="horaretorno">
         <mat-timepicker-toggle matIconSuffix [for]="timePickerRetorno"></mat-timepicker-toggle>
         <mat-timepicker #timePickerRetorno></mat-timepicker>
       </mat-form-field>
+      
+      <div [hidden]="horaretorno.valid || horaretorno.pristine" style="color: red;">
+        <span *ngIf="horaretorno.errors?.['required']">El campo es requerido</span>
+      </div>
+      
+    </div>
 
+    <div>
       <mat-form-field floatLabel="always">
         <mat-label>Costo de viaje</mat-label>
-        <input matInput type="number" class="example-right-align" placeholder="0" [formControl]="costo"/>
+        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="costo"/>
         <span matTextPrefix>$&nbsp;</span>
         <span matTextSuffix>.00</span>
       </mat-form-field>
+      
+      <div [hidden]="costo.valid || costo.pristine" style="color: red;">
+        <span *ngIf="costo.errors?.['required']">El campo es requerido</span>
 
+        <span *ngIf="costo.errors?.['min']">Valor minimo: 1</span>
+      </div>
+      
+    </div>
+
+    <div>
       <mat-form-field floatLabel="always">
         <mat-label>Monto total</mat-label>
-        <input matInput type="number" class="example-right-align" placeholder="0" [formControl]="total"/>
+        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="total"/>
         <span matTextPrefix>$&nbsp;</span>
         <span matTextSuffix>.00</span>
       </mat-form-field>
+      
+      <div [hidden]="total.valid || total.pristine" style="color: red;">
+        <span *ngIf="total.errors?.['required']">El campo es requerido</span>
 
+        <span *ngIf="total.errors?.['min']">Valor minimo: 1</span>
+      </div>
+      
+    </div>
+
+    <div>
       <mat-form-field appearance="fill">
         <mat-label>Fecha de emisión:</mat-label>
-        <input matInput [matDatepicker]="arrivalPicker" [formControl]="emision">
+        <input matInput [matDatepicker]="arrivalPicker" formControlName="emision">
         <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
         <mat-datepicker #arrivalPicker></mat-datepicker>
       </mat-form-field>
+      
+      <div [hidden]="emision.valid || emision.pristine" style="color: red;">
+        <span *ngIf="emision.errors?.['required']">El campo es requerido</span>
+      </div>
+      
+    </div>
+
     </form>
 
     <div class="botones">
-      <button class="boton1" type="submit">Agregar registro</button>
+      <button class="boton1" type="submit" [disabled]="formCotizacion.invalid" (click)="procesar()">Agregar registro</button>
+
       <button class="boton2" (click)="verRegistro()">Ver registros</button>
     </div>
   </div>
@@ -78,9 +145,6 @@
 
 <br><br>
 
-{{destino.value}}
-{{fecha.value}}
-{{personas.value}}
-{{horainicio.value}}
+
 <br><br><br><br>
 
