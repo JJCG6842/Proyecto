@@ -54,16 +54,20 @@ p{
     border-radius: 8px;
     color: white;
     font-size: 16px;
-    cursor: pointer;
     padding: 10px 0;
   }
   
   .boton1 {
-    background: rgb(20, 194, 20);
+    background: rgb(100, 165, 100);
   }
   
-  .boton1:hover {
-    background: rgb(75, 219, 75);
+  .boton1:hover:not(:disabled) {
+    background: rgb(57, 204, 57);
+  }
+  
+  .boton1:not(:disabled) {
+    background: rgb(20, 194, 20);
+    cursor: pointer;
   }
   
   .boton2 {

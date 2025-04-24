@@ -4,30 +4,34 @@
 
 
 <div class="container">
-    <form>
+    <form [formGroup]="formReserva">
       <div class="row">
+        <div>
         <mat-form-field>
             <mat-label>Nombre y apellido:</mat-label>
-            <input matInput>
+            <input matInput formControlName="name">
           </mat-form-field>
+          <div [hidden]="name.valid || name.pristine" style="color: red;">
+            <span *ngIf="name.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
 
+        <div>
           <mat-form-field>
             <mat-label>Email:</mat-label>
-            <input
-              matInput
-              placeholder="nose@example.com"
-              [formControl]="email"
-              (blur)="updateErrorMessage()"
-              required
-            />
-            @if (email.invalid) {
-              <mat-error>{{errorMessage()}}</mat-error>
-            }
+            <input matInput matInput formControlName="email">
           </mat-form-field>
+          <div [hidden]="email.valid || email.pristine" style="color: red;">
+            <span *ngIf="email.errors?.['required']">El campo es requerido</span>
+    
+            <span *ngIf="email.errors?.['email']">Email no valido</span>
+          </div>
+        </div>
 
+        <div>
           <mat-form-field>
             <mat-label>Destino Turistico</mat-label>
-            <mat-select>
+            <mat-select matInput formControlName="destino">
               <mat-option value="one">Libertad Americana(wari)</mat-option>
               <mat-option value="dos">City Tour Tradicional(Huamanga)</mat-option>
               <mat-option value="tres">Aguas Tuquesas Millpu</mat-option>
@@ -38,27 +42,49 @@
               <mat-option value="ocho">Cañones de Qorihuillca - grietas</mat-option>
             </mat-select>
           </mat-form-field>
+          <div [hidden]="destino.valid || destino.pristine" style="color: red;">
+            <span *ngIf="destino.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
 
+        <div>
           <mat-form-field>
             <mat-label>Hora de inicio</mat-label>
-            <input matInput [matTimepicker]="timePicker">
+            <input matInput [matTimepicker]="timePicker" formControlName="horainicio">
             <mat-timepicker-toggle matIconSuffix [for]="timePicker"></mat-timepicker-toggle>
             <mat-timepicker #timePicker></mat-timepicker>
           </mat-form-field>
+          <div [hidden]="horainicio.valid || horainicio.pristine" style="color: red;">
+            <span *ngIf="horainicio.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
 
+        <div>
           <mat-form-field appearance="fill">
             <mat-label>Fecha de llegada:</mat-label>
-            <input matInput [matDatepicker]="arrivalPicker">
+            <input matInput [matDatepicker]="arrivalPicker" formControlName="fechallegada">
             <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
             <mat-datepicker #arrivalPicker></mat-datepicker>
           </mat-form-field>
+          <div [hidden]="fechallegada.valid || fechallegada.pristine" style="color: red;">
+            <span *ngIf="fechallegada.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
 
+        <div>
           <mat-form-field appearance="fill">
             <mat-label>Fecha de salida:</mat-label>
-            <input matInput [matDatepicker]="departurePicker">
+            <input matInput [matDatepicker]="departurePicker" formControlName="fechasalida">
             <mat-datepicker-toggle matSuffix [for]="departurePicker"></mat-datepicker-toggle>
             <mat-datepicker #departurePicker></mat-datepicker>
           </mat-form-field>
+          <div [hidden]="fechasalida.valid || fechasalida.pristine" style="color: red;">
+            <span *ngIf="fechasalida.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
+
+
+
 
           <div style="text-align: right; width: 100%;">
             <button mat-flat-button style="background: rgb(243, 29, 29); color: white; position: relative; right: 15px;">
@@ -73,6 +99,7 @@
 </div>
 
 
+<!--
 
 <h2 style="position: relative; top: 38px;">Reservas recientes:</h2>
 
@@ -89,7 +116,7 @@
 </div>
 
 <br><br><br><br>
-
+-->
 
 
 

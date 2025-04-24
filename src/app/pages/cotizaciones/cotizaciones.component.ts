@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule, FormControl, Validators, FormGroup} from '@angular/forms';
+import { FormsModule, FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -36,7 +36,21 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./cotizaciones.component.scss'] 
 })
 export class CotizacionesComponent {
-  constructor(private router: Router) {}
+
+  formCotizacion!: FormGroup;
+
+  constructor(private router: Router, private fb: FormBuilder) {
+    this.formCotizacion = this.fb.group({
+      destino: ['', Validators.required],
+      fecha: ['', Validators.required],
+      personas: ['', [Validators.required, Validators.min(1)]],
+      horainicio: ['', Validators.required],
+      horaretorno: ['', Validators.required],
+      costo: ['', [Validators.required, Validators.min(1)]],
+      total: ['', [Validators.required, Validators.min(1)]],
+      emision: ['', Validators.required],
+    });
+  }
 
   verRegistro() {
     this.router.navigate(['/lista-cotizaciones']);
@@ -74,6 +88,25 @@ export class CotizacionesComponent {
     return this.formCotizacion.get('emision') as FormControl;
   };
 
+  procesar() {
+    console.log(this.formCotizacion.value); 
+
+  // Limpiar el formulario
+  this.formCotizacion.reset({
+    destino: '',
+    fecha: '',
+    personas: '',
+    horainicio: '',
+    horaretorno: '',
+    costo: '',
+    total: '',
+    emision: ''
+  });
+  }
+
+  
+
+/*
   formCotizacion = new FormGroup({
     'destino': new FormControl('',Validators.required),
     'fecha' : new FormControl('',[Validators.required]),
@@ -83,11 +116,9 @@ export class CotizacionesComponent {
     'costo': new FormControl('',[Validators.required, Validators.min(1)]),
     'total': new FormControl('',[Validators.required, Validators.min(1)]),
     'emision': new FormControl('',Validators.required)
-  });
+  });*/
 
-  procesar() {
-    console.log(this.formCotizacion.value);
-  }
+  
 
 
 
