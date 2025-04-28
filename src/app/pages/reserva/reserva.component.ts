@@ -11,6 +11,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-reserva',
   imports: [MatFormFieldModule,MatInputModule,MatSelectModule,FormsModule, ReactiveFormsModule, MatButtonModule,MatTimepickerModule,MatDatepickerModule,MatNativeDateModule
@@ -58,6 +59,20 @@ export class ReservaComponent {
 
   get fechasalida(){
     return this.formReserva.get('fechasalida') as FormControl;
+  }
+
+  procesar() {
+    console.log(this.formReserva.value); 
+
+  // Limpiar el formulario
+  this.formReserva.reset({
+    name: '',
+    email: '',
+    destino: '',
+    horainicio: '',
+    fechallegada: '',
+    fechasalida: '',
+  });
   }
 
 

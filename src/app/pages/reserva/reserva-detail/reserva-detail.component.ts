@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ReservaComponent } from '../reserva.component';
 
 @Component({
   selector: 'app-reserva-detail',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './reserva-detail.component.scss'
 })
 export class ReservaDetailComponent {
-
+  
 }

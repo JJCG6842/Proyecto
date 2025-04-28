@@ -2,6 +2,11 @@
     font-family: "Open Sans", sans-serif;
 }
 
+.title{
+  font-size: 29px;
+  font-weight: bold;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -13,17 +18,17 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
-.row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap; 
-  margin-bottom: 1rem;
+
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
   
 mat-form-field {
   flex: 1 1 48%; 
-  min-width: 200px; 
+  min-width: 280px; 
 }
 
   
@@ -45,5 +50,6 @@ mat-form-field {
     position: relative;
     top: 50px;
 }
+
 
   

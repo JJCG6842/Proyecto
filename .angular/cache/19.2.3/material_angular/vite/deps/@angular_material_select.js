@@ -3,7 +3,20 @@ import {
   CdkOverlayOrigin,
   Overlay,
   OverlayModule
-} from "./chunk-DADUJ2BG.js";
+} from "./chunk-J2RXX4NC.js";
+import {
+  FormGroupDirective,
+  NgControl,
+  NgForm,
+  Validators
+} from "./chunk-6BIDYLPG.js";
+import {
+  CdkScrollableModule,
+  ViewportRuler
+} from "./chunk-IFKXLAG3.js";
+import {
+  SelectionModel
+} from "./chunk-ZO4UDDKC.js";
 import {
   MAT_FORM_FIELD,
   MatError,
@@ -14,20 +27,7 @@ import {
   MatLabel,
   MatPrefix,
   MatSuffix
-} from "./chunk-L5RSS4YL.js";
-import {
-  CdkScrollableModule,
-  ViewportRuler
-} from "./chunk-EC7IBIRY.js";
-import {
-  SelectionModel
-} from "./chunk-J47T5HYD.js";
-import {
-  FormGroupDirective,
-  NgControl,
-  NgForm,
-  Validators
-} from "./chunk-HNPMCUUM.js";
+} from "./chunk-2OJJDZP4.js";
 import {
   A,
   ActiveDescendantKeyManager,
@@ -53,15 +53,15 @@ import {
   addAriaReferencedId,
   hasModifierKey,
   removeAriaReferencedId
-} from "./chunk-RMSSWDFO.js";
+} from "./chunk-ZSWRRNAA.js";
 import {
   Directionality
-} from "./chunk-UBGM4B6N.js";
-import "./chunk-6Y7T4UFD.js";
-import "./chunk-QPEXF2MT.js";
+} from "./chunk-LIBEUXTK.js";
+import "./chunk-NW7JBIRY.js";
+import "./chunk-BGJ6ZCTD.js";
 import {
   NgClass
-} from "./chunk-LL5RF35Z.js";
+} from "./chunk-IY42WUIH.js";
 import {
   ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
@@ -78,12 +78,21 @@ import {
   NgModule,
   Output,
   Renderer2,
+  Subject,
   ViewChild,
   ViewEncapsulation,
   booleanAttribute,
+  defer,
+  filter,
   inject,
+  map,
+  merge,
   numberAttribute,
   setClassMetadata,
+  startWith,
+  switchMap,
+  take,
+  takeUntil,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
   ɵɵadvance,
@@ -115,18 +124,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
-} from "./chunk-733PALXA.js";
-import {
-  Subject,
-  defer,
-  filter,
-  map,
-  merge,
-  startWith,
-  switchMap,
-  take,
-  takeUntil
-} from "./chunk-S35MAB2V.js";
+} from "./chunk-AW5AIWFJ.js";
 
 // node_modules/@angular/material/fesm2022/select.mjs
 var _c0 = ["trigger"];

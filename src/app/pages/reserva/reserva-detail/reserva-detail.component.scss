@@ -1,0 +1,62 @@
+*{
+    font-family: "Open Sans", sans-serif;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 20px;
+}
+
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.table thead {
+    background-color: rgb(252, 27, 27);
+    color: white;
+    text-align: center;
+    height: 60px;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.boton1,
+.boton2{
+    padding: 8px 16px;
+    margin-right: 10px; 
+    width: 90px;
+    height: 44px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.boton1 {
+    background: rgb(33, 83, 247);
+  }
+
+.boton2 {
+    background: rgb(252, 27, 27);
+}
+
+.boton1:hover{
+    background: rgb(59, 102, 245);
+}
+
+.boton2:hover{
+    background: rgb(243, 47, 47);
+}
+

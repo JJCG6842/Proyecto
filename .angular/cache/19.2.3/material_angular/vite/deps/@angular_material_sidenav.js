@@ -3,8 +3,8 @@ import {
   CdkScrollableModule,
   ScrollDispatcher,
   ViewportRuler
-} from "./chunk-EC7IBIRY.js";
-import "./chunk-J47T5HYD.js";
+} from "./chunk-IFKXLAG3.js";
+import "./chunk-ZO4UDDKC.js";
 import {
   ESCAPE,
   FocusMonitor,
@@ -12,19 +12,19 @@ import {
   InteractivityChecker,
   MatCommonModule,
   hasModifierKey
-} from "./chunk-RMSSWDFO.js";
+} from "./chunk-ZSWRRNAA.js";
 import {
   Directionality
-} from "./chunk-UBGM4B6N.js";
-import "./chunk-6Y7T4UFD.js";
+} from "./chunk-LIBEUXTK.js";
+import "./chunk-NW7JBIRY.js";
 import {
   Platform,
   coerceBooleanProperty,
   coerceNumberProperty
-} from "./chunk-QPEXF2MT.js";
+} from "./chunk-BGJ6ZCTD.js";
 import {
   DOCUMENT
-} from "./chunk-LL5RF35Z.js";
+} from "./chunk-IY42WUIH.js";
 import {
   ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
@@ -42,11 +42,21 @@ import {
   Output,
   QueryList,
   Renderer2,
+  Subject,
   ViewChild,
   ViewEncapsulation,
   afterNextRender,
+  debounceTime,
+  filter,
+  fromEvent,
   inject,
+  map,
+  mapTo,
+  merge,
   setClassMetadata,
+  startWith,
+  take,
+  takeUntil,
   ɵɵInheritDefinitionFeature,
   ɵɵProvidersFeature,
   ɵɵadvance,
@@ -72,19 +82,7 @@ import {
   ɵɵstyleProp,
   ɵɵtemplate,
   ɵɵviewQuery
-} from "./chunk-733PALXA.js";
-import {
-  Subject,
-  debounceTime,
-  filter,
-  fromEvent,
-  map,
-  mapTo,
-  merge,
-  startWith,
-  take,
-  takeUntil
-} from "./chunk-S35MAB2V.js";
+} from "./chunk-AW5AIWFJ.js";
 
 // node_modules/@angular/material/fesm2022/sidenav.mjs
 var _c0 = ["*"];
