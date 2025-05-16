@@ -1,7 +1,35 @@
-<div>
+<div style="display: flex; justify-content: space-between;">
     <h2 class="title">Lista de cotizaciones:</h2>
+    <button mat-flat-button style="background: red; position: relative; top: 15px; right: 50px; color: white;"
+    (click)="goBack()">Regresar</button>
 </div>
 
 <div class="container">
+    <mat-card appearance="outlined">
+      <img mat-card-image src="https://img.freepik.com/vector-premium/estilo-ilustracion-vectorial-periodico_717774-1189.jpg">
+      <mat-card-content>
+        <p class="text1">Cotizacion de Huamanga</p>
+        <p>Fecha de emision:</p>
+        <p>Hora de registro:</p>
+  
+        <div style="display: flex; gap: 10px;">
+          <button mat-flat-button style="background: rgb(16, 69, 243); color: white;">Ver cotizacion</button>
+          <button mat-flat-button style="background: red; color: white;">Eliminar</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined">
+        <img mat-card-image src="https://img.freepik.com/vector-premium/estilo-ilustracion-vectorial-periodico_717774-1189.jpg">
+        <mat-card-content>
+          <p class="text1">Cotizacion de Huamanga</p>
+          <p>Fecha de emision:</p>
+          <p>Hora de registro:</p>
     
-</div>
+          <div style="display: flex; gap: 10px;">
+            <button mat-flat-button style="background: rgb(16, 69, 243); color: white;">Ver cotizacion</button>
+            <button mat-flat-button style="background: red; color: white;">Eliminar</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+  </div>

@@ -41,6 +41,7 @@ export class CotizacionesComponent {
 
   constructor(private router: Router, private fb: FormBuilder) {
     this.formCotizacion = this.fb.group({
+      cliente:['', Validators.required],
       destino: ['', Validators.required],
       fecha: ['', Validators.required],
       personas: ['', [Validators.required, Validators.min(1)]],
@@ -54,6 +55,10 @@ export class CotizacionesComponent {
 
   verRegistro() {
     this.router.navigate(['/lista-cotizaciones']);
+  }
+  
+  get cliente(){
+    return this.formCotizacion.get('cliente') as FormControl;
   }
 
   get destino(){
@@ -93,6 +98,7 @@ export class CotizacionesComponent {
 
   // Limpiar el formulario
   this.formCotizacion.reset({
+    cliente:'',
     destino: '',
     fecha: '',
     personas: '',

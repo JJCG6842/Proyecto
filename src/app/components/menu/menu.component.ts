@@ -110,7 +110,7 @@ export class MenuComponent {
     },
     {
       icon:'person',
-      label:'Contacto',
+      label:'Clientes',
       route:'clientes'
     },
   ])

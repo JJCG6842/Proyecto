@@ -82,3 +82,21 @@
   background: rgb(41, 238, 41);
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+
+
+.custom-dialog-container {
+  max-width: none !important;
+  width: 90vw;
+  height: auto;
+}
+

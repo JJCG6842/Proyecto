@@ -1,1 +1,16 @@
-<p>paquete-detail works!</p>
+<button mat-flat-button (click)="goBack()">Regrasar</button>
+
+<div class="imagen">
+    <img src="{{tour!.imageUrl}}" alt="{{tour!.name}}">
+</div>
+
+<div>
+    <h2>Informacion del Tour: </h2>
+    <p>N°: {{tourId}}</p>
+    <h1>{{tour!.name}}</h1>
+    <p class="texts">Duracion: {{tour!.duration}}</p>
+    <p class="texts">Inicio: {{tour!.inicio}} - {{tour!.retorno}}</p>
+    <p class="texts">Precio: ${{tour!.price}}</p>
+    <p class="texts">Descripcion: {{tour!.description}}</p>
+    
+</div>

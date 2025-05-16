@@ -23,8 +23,12 @@ export class ReservaComponent {
   readonly dialog = inject(MatDialog);
 
   openDialog() {
-    const dialogRef = this.dialog.open(ReservaDetailComponent);
-
+    const dialogRef = this.dialog.open(ReservaDetailComponent, {
+      width: '40%',
+      maxWidth: 'none',
+      panelClass: 'custom-dialog-container'
+    });
+  
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

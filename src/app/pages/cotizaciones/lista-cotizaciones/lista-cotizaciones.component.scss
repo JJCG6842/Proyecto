@@ -1,0 +1,36 @@
+mat-card{
+    width: 400px;
+    height: auto;
+    display: flex;
+}
+
+img{
+    width: 100%;
+    position: relative;
+    height: 310px;
+}
+.text1{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 55px; 
+    justify-content: center;
+    padding: 20px;
+  }
+
+  mat-card {
+    width: 33%; 
+    min-width: 280px; 
+  }
+
+  @media (max-width: 768px) {
+    mat-card {
+      width: 90%; 
+    }
+  }

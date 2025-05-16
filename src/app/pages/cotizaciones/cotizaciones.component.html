@@ -9,6 +9,16 @@
 
     <form class="input-grid" [formGroup]="formCotizacion">
       <div>
+        <mat-form-field>
+        <mat-label>Nombre cliente</mat-label>
+        <input matInput formControlName="cliente">
+        </mat-form-field>
+        <div [hidden]="cliente.valid || cliente.pristine" style="color: red;">
+          <span *ngIf="cliente.errors?.['required']">El campo es requerido</span>
+        </div>
+      </div>
+
+      <div>
       <mat-form-field>
         <mat-label>Destinos Turísticos</mat-label>
         <mat-select formControlName="destino">
@@ -144,7 +154,5 @@
 </div>
 
 <br><br>
-
-
 <br><br><br><br>
 
