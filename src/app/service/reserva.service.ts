@@ -1,29 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Reserva } from '../interface/reserva.interface';
+
+interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservaService {
-  
+
   private apiUrl = 'http://localhost:3000/reserva';
 
   constructor(private http: HttpClient) {}
 
-  crearReserva(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create`, data);
+  crearReserva(data: Reserva): Observable<ApiResponse<Reserva>> {
+    return this.http.post<ApiResponse<Reserva>>(`${this.apiUrl}/create`, data);
   }
 
-  obtenerReservas(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  obtenerReservas(): Observable<ApiResponse<Reserva[]>> {
+    return this.http.get<ApiResponse<Reserva[]>>(this.apiUrl);
   }
 
-  eliminarReservaPorId(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  editarReserva(id: string, data: Partial<Reserva>): Observable<ApiResponse<Reserva>> {
+    return this.http.patch<ApiResponse<Reserva>>(`${this.apiUrl}/${id}`, data);
   }
 
-  eliminarReservaPorDni(dni: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/dni/${dni}`);
+  eliminarReservaPorId(id: string): Observable<ApiResponse<Reserva>> {
+    return this.http.delete<ApiResponse<Reserva>>(`${this.apiUrl}/${id}`);
+  }
+
+  eliminarReservaPorDni(dni: string): Observable<ApiResponse<Reserva>> {
+    return this.http.delete<ApiResponse<Reserva>>(`${this.apiUrl}/dni/${dni}`);
   }
 }

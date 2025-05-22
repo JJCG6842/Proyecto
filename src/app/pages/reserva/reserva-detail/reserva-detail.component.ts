@@ -10,7 +10,9 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CommonModule } from '@angular/common';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { Reserva } from '../../../interface/reserva.interface';
+import { ReservaService } from '../../../service/reserva.service';
 
 
 @Component({
@@ -24,16 +26,22 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 export class ReservaDetailComponent {
   formReserva!: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder) {
-    this.formReserva = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      destino: ['', Validators.required],
-      horainicio: ['', Validators.required],
-      fechallegada: ['', Validators.required],
-      fechasalida: ['',Validators.required],
-    });
-  }
+  constructor(
+  private router: Router,
+  private fb: FormBuilder,
+  private reservaService: ReservaService,
+  private dialogRef: MatDialogRef<ReservaDetailComponent>
+) {
+  this.formReserva = this.fb.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    dni: ['', Validators.required],
+    destino: ['', Validators.required],
+    horainicio: ['', Validators.required],
+    fechallegada: ['', Validators.required],
+    fechasalida: ['', Validators.required],
+  });
+}
 
   get name(){
     return this.formReserva.get('name') as FormControl;
@@ -41,6 +49,10 @@ export class ReservaDetailComponent {
 
   get email(){
     return this.formReserva.get('email') as FormControl;
+  }
+
+  get dni(){
+    return this.formReserva.get('dni') as FormControl;
   }
 
   get destino(){
@@ -60,22 +72,35 @@ export class ReservaDetailComponent {
   }
 
   procesar() {
-    console.log(this.formReserva.value); 
-
-  // Limpiar el formulario
-  this.formReserva.reset({
-    name: '',
-    email: '',
-    destino: '',
-    horainicio: '',
-    fechallegada: '',
-    fechasalida: '',
-  });
+  if (this.formReserva.invalid) {
+    this.formReserva.markAllAsTouched();
+    return;
   }
 
+  const reservaData: Reserva = {
+    nombre: this.formReserva.value.name,
+    email: this.formReserva.value.email,
+    dni: this.formReserva.value.dni,
+    destino: this.formReserva.value.destino,
+    horainicio: this.formReserva.value.horainicio,
+    fechallegada: this.formReserva.value.fechallegada,
+    fechasalida: this.formReserva.value.fechasalida,
+  };
 
+  this.reservaService.crearReserva(reservaData).subscribe({
+    next: (res) => {
+      if (res.success) {
+        alert('✅ Reserva registrada correctamente.');
+        this.dialogRef.close(res.data); // ← envía la reserva creada al componente padre
+      } else {
+        alert('⚠️ ' + res.message);
+      }
+    },
+    error: (err) => {
+      console.error('Error al registrar reserva:', err);
+      alert('❌ Error del servidor');
+    }
+  });
+}
 
-
-
-  
 }

@@ -7,10 +7,10 @@
 
 <div class="table">
   <table>
-      <thead>
-          <th>ID</th>
+      <thead>   
           <th>Nombre completo</th>
           <th>Correo electronico</th>
+          <th>DNI</th>
           <th>Destino Turístico</th>
           <th>Hora de inicio</th>
           <th>Fecha de llegada</th>
@@ -18,33 +18,19 @@
           <th>Acciones</th>
       </thead>
       <tbody>
-          <tr>
-              <td>1</td>
-              <td>Juan Cisneros</td>
-              <td>cisnerosjuan6842gmail.com</td>
-              <td>Ruta del Inca - Vilcashuaman</td>
-              <td style="text-align: center;">8:30 am</td>
-              <td style="text-align: center;">29/04/25</td>
-              <td style="text-align: center;">30/04/25</td>
-              <td>
-                  <button class="boton1">Editar</button>
-                  <button class="boton2">Eliminar</button>
-              </td>
-          </tr>
-
-          <tr>
-              <td>2</td>
-              <td>Anonimo tal</td>
-              <td>anonimoarrobagmail.com</td>
-              <td>Ruta del Inca - Vilcashuaman</td>
-              <td style="text-align: center;">9:30 am</td>
-              <td style="text-align: center;">29/04/25</td>
-              <td style="text-align: center;">30/04/25</td>
-              <td>
-                  <button class="boton1">Editar</button>
-                  <button class="boton2">Eliminar</button>
-              </td>
-          </tr>
-      </tbody>
+  <tr *ngFor="let reserva of reservas">
+    <td>{{ reserva.nombre }}</td>
+    <td>{{ reserva.email }}</td>
+    <td>{{ reserva.dni }}</td>
+    <td>{{ reserva.destino }}</td>
+    <td style="text-align: center;">{{ reserva.horainicio | date: 'shortTime' }}</td>
+    <td style="text-align: center;">{{ reserva.fechallegada | date: 'shortDate' }}</td>
+    <td style="text-align: center;">{{ reserva.fechasalida | date: 'shortDate' }}</td>
+    <td>
+      <button class="boton1">Editar</button>
+      <button class="boton2">Eliminar</button>
+    </td>
+  </tr>
+</tbody>
   </table>
 </div>
