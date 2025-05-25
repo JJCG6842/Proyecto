@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Cotizacion de Turismo (registro)</h2>
+<mat-dialog-content class="mat-typography">
+  <p><strong>Cliente:</strong> {{ data.cliente }}</p>
+  <p><strong>Destino:</strong> {{ data.destino }}</p>
+  <p><strong>Fecha:</strong> {{ data.fecha | date }}</p>
+  <p><strong>Personas:</strong> {{ data.personas }}</p>
+  <p><strong>Hora de inicio:</strong> {{ data.horainicio| date: 'HH:mm' }}</p>
+  <p><strong>Hora de retorno:</strong> {{ data.horaretorno | date: 'HH:mm'}}</p>
+  <p><strong>Costo por persona:</strong> S/. {{ data.costo }}</p>
+  <p><strong>Total:</strong> S/. {{ data.total }}</p>
+  <p><strong>Fecha de emisión:</strong> {{ data.emision | date }}</p>
+  <p><strong>Validez:</strong> {{ data.validez | date }}</p>
+  <p><strong>Registrado en:</strong> {{ data.createAt | date }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="cerrar()" style="color: white; background: red;">Cerrar</button>
+</mat-dialog-actions>
+

@@ -7,6 +7,8 @@ import { ReservaComponent } from './pages/reserva/reserva.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ListaCotizacionesComponent } from './pages/cotizaciones/lista-cotizaciones/lista-cotizaciones.component';
 import { ReservaDetailComponent } from './pages/reserva/reserva-detail/reserva-detail.component';
+import { ReservaEditComponent } from './pages/reserva/reserva-edit/reserva-edit.component';
+import { CotizacionDetailComponent } from './pages/cotizaciones/cotizacion-detail/cotizacion-detail.component';
 
 export const routes: Routes = [
   {
@@ -44,4 +46,13 @@ export const routes: Routes = [
     path:'reserva-detail',
     component: ReservaDetailComponent
   },
+  {
+    path:'reserva-edit',
+    component: ReservaEditComponent
+  },
+  {
+    path:'cotizacion-detail',
+    component: CotizacionDetailComponent,
+  }
+
 ];

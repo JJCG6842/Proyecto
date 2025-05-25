@@ -5,31 +5,17 @@
 </div>
 
 <div class="container">
-    <mat-card appearance="outlined">
-      <img mat-card-image src="https://img.freepik.com/vector-premium/estilo-ilustracion-vectorial-periodico_717774-1189.jpg">
-      <mat-card-content>
-        <p class="text1">Cotizacion de Huamanga</p>
-        <p>Fecha de emision:</p>
-        <p>Hora de registro:</p>
-  
-        <div style="display: flex; gap: 10px;">
-          <button mat-flat-button style="background: rgb(16, 69, 243); color: white;">Ver cotizacion</button>
-          <button mat-flat-button style="background: red; color: white;">Eliminar</button>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <mat-card *ngFor="let cot of cotizaciones" appearance="outlined">
+  <img mat-card-image src="https://img.freepik.com/vector-premium/estilo-ilustracion-vectorial-periodico_717774-1189.jpg">
+  <mat-card-content>
+    <p class="text1">Cotización de {{ cot.cliente }}</p>
+    <p>Fecha de emisión: {{ cot.emision | date }}</p>
+    <p>Hora de registro: {{ cot.createAt | date: 'shortTime' }}</p>
 
-    <mat-card appearance="outlined">
-        <img mat-card-image src="https://img.freepik.com/vector-premium/estilo-ilustracion-vectorial-periodico_717774-1189.jpg">
-        <mat-card-content>
-          <p class="text1">Cotizacion de Huamanga</p>
-          <p>Fecha de emision:</p>
-          <p>Hora de registro:</p>
-    
-          <div style="display: flex; gap: 10px;">
-            <button mat-flat-button style="background: rgb(16, 69, 243); color: white;">Ver cotizacion</button>
-            <button mat-flat-button style="background: red; color: white;">Eliminar</button>
-          </div>
-        </mat-card-content>
-      </mat-card>
-  </div>
+    <div style="display: flex; gap: 10px;">
+      <button mat-flat-button style="background: rgb(16, 69, 243); color: white;" (click)="openDialog(cot)">Ver cotización</button>
+      <button mat-flat-button style="background: red; color: white;" (click)="eliminarCotizacion(cot._id!)">Eliminar</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>

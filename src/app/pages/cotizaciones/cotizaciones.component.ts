@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CotizacionService } from '../../service/cotizacion.service';
 
 
 
@@ -39,7 +40,8 @@ export class CotizacionesComponent {
 
   formCotizacion!: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(private router: Router, private fb: FormBuilder, 
+    private cotizacionService:CotizacionService) {
     this.formCotizacion = this.fb.group({
       cliente:['', Validators.required],
       destino: ['', Validators.required],
@@ -48,8 +50,8 @@ export class CotizacionesComponent {
       horainicio: ['', Validators.required],
       horaretorno: ['', Validators.required],
       costo: ['', [Validators.required, Validators.min(1)]],
-      total: ['', [Validators.required, Validators.min(1)]],
       emision: ['', Validators.required],
+      validez: ['',Validators.required],
     });
   }
 
@@ -85,57 +87,35 @@ export class CotizacionesComponent {
     return this.formCotizacion.get('costo') as FormControl;
   }
 
-  get total(){
-    return this.formCotizacion.get('total') as FormControl;
-  }
-
   get emision(){
     return this.formCotizacion.get('emision') as FormControl;
-  };
-
-  procesar() {
-    console.log(this.formCotizacion.value); 
-
-  // Limpiar el formulario
-  this.formCotizacion.reset({
-    cliente:'',
-    destino: '',
-    fecha: '',
-    personas: '',
-    horainicio: '',
-    horaretorno: '',
-    costo: '',
-    total: '',
-    emision: ''
-  });
   }
 
-  
+  get validez(){
+    return this.formCotizacion.get('validez') as FormControl;
+  }
 
-/*
-  formCotizacion = new FormGroup({
-    'destino': new FormControl('',Validators.required),
-    'fecha' : new FormControl('',[Validators.required]),
-    'personas': new FormControl('',[Validators.required, Validators.min(1)]),
-    'horainicio': new FormControl('',Validators.required),
-    'horaretorno': new FormControl('',Validators.required),
-    'costo': new FormControl('',[Validators.required, Validators.min(1)]),
-    'total': new FormControl('',[Validators.required, Validators.min(1)]),
-    'emision': new FormControl('',Validators.required)
-  });*/
+  procesar() {
+  if (this.formCotizacion.invalid) {
+    this.formCotizacion.markAllAsTouched();
+    return;
+  }
 
-  
+  const formData = this.formCotizacion.value;
 
+  this.cotizacionService.createCotizacion(formData).subscribe({
+    next: (response) => {
+      console.log('Cotización creada:', response);
 
-
-  /*destino = new FormControl('',Validators.required);
-  fecha = new FormControl('',[Validators.required]);
-  personas = new FormControl('',[Validators.required, Validators.min(1)]);
-  horainicio = new FormControl('',Validators.required);
-  horaretorno = new FormControl('',Validators.required);
-  costo = new FormControl('',[Validators.required, Validators.min(1)]);
-  total = new FormControl('',[Validators.required, Validators.min(1)]);
-  emision = new FormControl('',Validators.required);*/
-
+      // ✅ Navegar solo si se registró correctamente
+      alert('Cotización registrada con éxito');
+      this.router.navigate(['/lista-cotizaciones']);
+    },
+    error: (error) => {
+      console.error('Error al crear cotización:', error);
+      alert('Error al registrar la cotización');
+    }
+  });
+}
 
 }

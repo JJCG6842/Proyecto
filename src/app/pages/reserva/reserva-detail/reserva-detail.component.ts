@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { Reserva } from '../../../interface/reserva.interface';
 import { ReservaService } from '../../../service/reserva.service';
+import { ReservaComponent } from '../reserva.component';
 
 
 @Component({
@@ -90,8 +91,10 @@ export class ReservaDetailComponent {
   this.reservaService.crearReserva(reservaData).subscribe({
     next: (res) => {
       if (res.success) {
-        alert('✅ Reserva registrada correctamente.');
-        this.dialogRef.close(res.data); // ← envía la reserva creada al componente padre
+        alert('✅ Reserva registrada correctamente, actualize la tabla.');
+        this.dialogRef.close(res.data);
+        
+         // ← envía la reserva creada al componente padre
       } else {
         alert('⚠️ ' + res.message);
       }

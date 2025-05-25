@@ -1,13 +1,20 @@
 <div style="display: flex; justify-content: space-between;">
     <h2 class="title">Reservaciones registradas:</h2>
-    <button mat-flat-button (click)="openDialog()" class="boton3">
+    <div style="gap: 12px; display: flex;">
+      <button mat-flat-button (click)="openDialog()" class="boton3">
       Agregar reservacion
     </button>
+    <button mat-flat-button class="boton4" (click)="refresh()">
+      Actualizar registro
+    </button>
+    </div>
+    
 </div>
 
 <div class="table">
   <table>
-      <thead>   
+      <thead>
+        <tr>   
           <th>Nombre completo</th>
           <th>Correo electronico</th>
           <th>DNI</th>
@@ -16,8 +23,9 @@
           <th>Fecha de llegada</th>
           <th>Fecha de salida</th>
           <th>Acciones</th>
+        </tr>
       </thead>
-      <tbody>
+    <tbody>
   <tr *ngFor="let reserva of reservas">
     <td>{{ reserva.nombre }}</td>
     <td>{{ reserva.email }}</td>
@@ -27,8 +35,8 @@
     <td style="text-align: center;">{{ reserva.fechallegada | date: 'shortDate' }}</td>
     <td style="text-align: center;">{{ reserva.fechasalida | date: 'shortDate' }}</td>
     <td>
-      <button class="boton1">Editar</button>
-      <button class="boton2">Eliminar</button>
+      <button class="boton1" (click)="openEdit(reserva)">Editar</button>
+      <button class="boton2" (click)="eliminarReserva(reserva)">Eliminar</button>
     </td>
   </tr>
 </tbody>

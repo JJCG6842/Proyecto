@@ -9,6 +9,8 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { ReservaService } from '../../service/reserva.service';
 import { Reserva } from '../../interface/reserva.interface';
+import { MatButtonModule } from '@angular/material/button';
+import { ReservaEditComponent } from './reserva-edit/reserva-edit.component';
 
 
 @Component({
@@ -39,7 +41,7 @@ export class ReservaComponent implements OnInit {
 
   ngOnInit() {
     // Cargar reservas desde LocalStorage al cargar el componente
-    this.loadReservas();
+    this.obtenerReservas();
   }
 
   loadReservas() {
@@ -57,7 +59,7 @@ export class ReservaComponent implements OnInit {
     this.reservaService.obtenerReservas().subscribe({
       next: (res) => {
         if (res.success) {
-          // Convertir las fechas en objetos Date para que funcionen correctamente con el pipe
+          
           this.reservas = res.data.map((r: any) => ({
             ...r,
             horainicio: new Date(r.horainicio),
@@ -76,6 +78,32 @@ export class ReservaComponent implements OnInit {
       }
     });
   }
+
+  eliminarReserva(reserva: Reserva) {
+  const confirmacion = confirm(`¿Estás seguro de que deseas eliminar la reserva de ${reserva.nombre}?`);
+
+  if (!confirmacion) return;
+
+  this.reservaService.eliminarReservaPorDni(reserva.dni).subscribe({
+    next: (res) => {
+      if (res.success) {
+        // Filtra la lista para eliminar visualmente la reserva
+        this.reservas = this.reservas.filter(r => r.dni !== reserva.dni);
+
+        // Actualiza el LocalStorage también
+        localStorage.setItem('reservas', JSON.stringify(this.reservas));
+
+        alert('✅ Reserva eliminada correctamente, actualize la tabla.');
+      } else {
+        alert('⚠️ ' + res.message);
+      }
+    },
+    error: (err) => {
+      console.error('Error al eliminar reserva:', err);
+      alert('❌ No se pudo eliminar la reserva.');
+    }
+  });
+}
   
   // Método para abrir el dialog y añadir una nueva reserva
   openDialog() {
@@ -95,6 +123,25 @@ export class ReservaComponent implements OnInit {
       }
     });
   }
+
+  refresh(){
+   localStorage.setItem('reservas', JSON.stringify(this.reservas)); 
+  }
+
+  openEdit(reserva: Reserva) {
+  const dialogRef = this.dialog.open(ReservaEditComponent, {
+    width: '40%',
+    maxWidth: 'none',
+    panelClass: 'custom-dialog-container',
+    data: reserva  // ✅ Pasamos la reserva a editar
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.obtenerReservas();  // Actualizamos la tabla tras edición
+    }
+  });
+}
 }
 
 

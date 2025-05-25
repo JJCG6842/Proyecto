@@ -2,12 +2,12 @@ import {
   ScrollDispatcher,
   ScrollingModule,
   ViewportRuler
-} from "./chunk-IFKXLAG3.js";
+} from "./chunk-H4WQCXDR.js";
 import {
   ESCAPE,
   _IdGenerator,
   hasModifierKey
-} from "./chunk-ZSWRRNAA.js";
+} from "./chunk-YH4EN4VO.js";
 import {
   BidiModule,
   Directionality
@@ -23,7 +23,7 @@ import {
   coerceArray,
   coerceCssPixelValue,
   supportsScrollBehavior
-} from "./chunk-BGJ6ZCTD.js";
+} from "./chunk-63H67EWS.js";
 import {
   DOCUMENT,
   Location
@@ -939,6 +939,34 @@ var OverlayConfig = class {
       }
     }
   }
+};
+var ConnectionPositionPair = class {
+  offsetX;
+  offsetY;
+  panelClass;
+  /** X-axis attachment point for connected overlay origin. Can be 'start', 'end', or 'center'. */
+  originX;
+  /** Y-axis attachment point for connected overlay origin. Can be 'top', 'bottom', or 'center'. */
+  originY;
+  /** X-axis attachment point for connected overlay. Can be 'start', 'end', or 'center'. */
+  overlayX;
+  /** Y-axis attachment point for connected overlay. Can be 'top', 'bottom', or 'center'. */
+  overlayY;
+  constructor(origin, overlay, offsetX, offsetY, panelClass) {
+    this.offsetX = offsetX;
+    this.offsetY = offsetY;
+    this.panelClass = panelClass;
+    this.originX = origin.originX;
+    this.originY = origin.originY;
+    this.overlayX = overlay.overlayX;
+    this.overlayY = overlay.overlayY;
+  }
+};
+var ScrollingVisibility = class {
+  isOriginClipped;
+  isOriginOutsideView;
+  isOverlayClipped;
+  isOverlayOutsideView;
 };
 var ConnectedOverlayPositionChange = class {
   connectionPair;
@@ -2500,6 +2528,48 @@ function compareScrollVisibility(a, b) {
   }
   return a.isOriginClipped === b.isOriginClipped && a.isOriginOutsideView === b.isOriginOutsideView && a.isOverlayClipped === b.isOverlayClipped && a.isOverlayOutsideView === b.isOverlayOutsideView;
 }
+var STANDARD_DROPDOWN_BELOW_POSITIONS = [{
+  originX: "start",
+  originY: "bottom",
+  overlayX: "start",
+  overlayY: "top"
+}, {
+  originX: "start",
+  originY: "top",
+  overlayX: "start",
+  overlayY: "bottom"
+}, {
+  originX: "end",
+  originY: "bottom",
+  overlayX: "end",
+  overlayY: "top"
+}, {
+  originX: "end",
+  originY: "top",
+  overlayX: "end",
+  overlayY: "bottom"
+}];
+var STANDARD_DROPDOWN_ADJACENT_POSITIONS = [{
+  originX: "end",
+  originY: "top",
+  overlayX: "start",
+  overlayY: "top"
+}, {
+  originX: "end",
+  originY: "bottom",
+  overlayX: "start",
+  overlayY: "bottom"
+}, {
+  originX: "start",
+  originY: "top",
+  overlayX: "end",
+  overlayY: "top"
+}, {
+  originX: "start",
+  originY: "bottom",
+  overlayX: "end",
+  overlayY: "bottom"
+}];
 var wrapperClass = "cdk-global-overlay-wrapper";
 var GlobalPositionStrategy = class {
   /** The overlay to which this strategy is attached. */
@@ -3439,13 +3509,30 @@ export {
   BasePortalOutlet,
   CdkPortalOutlet,
   PortalModule,
+  BlockScrollStrategy,
+  CloseScrollStrategy,
+  NoopScrollStrategy,
+  RepositionScrollStrategy,
+  ScrollStrategyOptions,
   OverlayConfig,
+  ConnectionPositionPair,
+  ScrollingVisibility,
+  ConnectedOverlayPositionChange,
+  validateVerticalPosition,
+  validateHorizontalPosition,
+  OverlayKeyboardDispatcher,
+  OverlayOutsideClickDispatcher,
   OverlayContainer,
   OverlayRef,
   FlexibleConnectedPositionStrategy,
+  STANDARD_DROPDOWN_BELOW_POSITIONS,
+  STANDARD_DROPDOWN_ADJACENT_POSITIONS,
+  GlobalPositionStrategy,
+  OverlayPositionBuilder,
   Overlay,
   CdkOverlayOrigin,
   CdkConnectedOverlay,
-  OverlayModule
+  OverlayModule,
+  FullscreenOverlayContainer
 };
-//# sourceMappingURL=chunk-GP5KLMAB.js.map
+//# sourceMappingURL=chunk-4ZHL55VZ.js.map

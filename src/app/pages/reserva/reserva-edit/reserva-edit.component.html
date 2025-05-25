@@ -1,0 +1,110 @@
+
+  <h2 mat-dialog-title>Editar reservar</h2>
+  
+  <mat-dialog-content>
+    <form [formGroup]="formReserva">
+      <div class="form-grid">
+        
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre y apellido:</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+          <div [hidden]="name.valid || name.pristine" class="error">
+            <span *ngIf="name.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
+  
+        
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Email:</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
+          <div [hidden]="email.valid || email.pristine" class="error">
+            <span *ngIf="email.errors?.['required']">El campo es requerido</span>
+            <span *ngIf="email.errors?.['email']">Email no válido</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>DNI:</mat-label>
+            <input matInput formControlName="dni" />
+          </mat-form-field>
+          <div [hidden]="dni.valid || dni.pristine" class="error">
+            <span *ngIf="dni.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
+  
+        
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Destino Turístico</mat-label>
+            <mat-select formControlName="destino">
+              <mat-option value="Libertad Americana (wari)">Libertad Americana (wari)</mat-option>
+              <mat-option value="City Tour Tradicional (Huamanga)">City Tour Tradicional (Huamanga)</mat-option>
+              <mat-option value="Aguas Turquesas Millpu">Aguas Turquesas Millpu</mat-option>
+              <mat-option value="Laguna Azul (el caribe andino)">Laguna Azul (el caribe andino)</mat-option>
+              <mat-option value="Ruta del Inca - Vilcashuaman">Ruta del Inca - Vilcashuaman</mat-option>
+              <mat-option value="Piscinas Termales - Colpa">Piscinas Termales - Colpa</mat-option>
+              <mat-option value="Aguas Termales - Pachapupum">Aguas Termales - Pachapupum</mat-option>
+              <mat-option value="Cañones de Qorihuillca - grietas">Cañones de Qorihuillca - grietas</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div [hidden]="destino.valid || destino.pristine" class="error">
+            <span *ngIf="destino.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
+  
+        
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Hora de inicio</mat-label>
+            <input matInput [matTimepicker]="timePicker" formControlName="horainicio" />
+            <mat-timepicker-toggle matIconSuffix [for]="timePicker"></mat-timepicker-toggle>
+            <mat-timepicker #timePicker></mat-timepicker>
+          </mat-form-field>
+          <div [hidden]="horainicio.valid || horainicio.pristine" class="error">
+            <span *ngIf="horainicio.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
+  
+        
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de llegada:</mat-label>
+            <input matInput [matDatepicker]="arrivalPicker" formControlName="fechallegada" />
+            <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+            <mat-datepicker #arrivalPicker></mat-datepicker>
+          </mat-form-field>
+          <div [hidden]="fechallegada.valid || fechallegada.pristine" class="error">
+            <span *ngIf="fechallegada.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
+  
+        
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de salida:</mat-label>
+            <input matInput [matDatepicker]="departurePicker" formControlName="fechasalida" />
+            <mat-datepicker-toggle matSuffix [for]="departurePicker"></mat-datepicker-toggle>
+            <mat-datepicker #departurePicker></mat-datepicker>
+          </mat-form-field>
+          <div [hidden]="fechasalida.valid || fechasalida.pristine" class="error">
+            <span *ngIf="fechasalida.errors?.['required']">El campo es requerido</span>
+          </div>
+        </div>
+        
+      </div>
+    </form>
+  </mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-flat-button style="background: rgb(243, 29, 29); color: white;" (click)="editar()">
+      Editar reserva
+    </button>
+    <button mat-flat-button mat-dialog-close style="background: rgb(243, 29, 29); color: white;">Cerrar edicion</button>
+</mat-dialog-actions>
+    
+  

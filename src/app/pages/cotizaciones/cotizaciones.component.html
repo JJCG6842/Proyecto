@@ -107,41 +107,37 @@
       
       <div [hidden]="costo.valid || costo.pristine" style="color: red;">
         <span *ngIf="costo.errors?.['required']">El campo es requerido</span>
-
         <span *ngIf="costo.errors?.['min']">Valor minimo: 1</span>
       </div>
       
     </div>
 
-    <div>
-      <mat-form-field floatLabel="always">
-        <mat-label>Monto total</mat-label>
-        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="total"/>
-        <span matTextPrefix>$&nbsp;</span>
-        <span matTextSuffix>.00</span>
-      </mat-form-field>
-      
-      <div [hidden]="total.valid || total.pristine" style="color: red;">
-        <span *ngIf="total.errors?.['required']">El campo es requerido</span>
 
-        <span *ngIf="total.errors?.['min']">Valor minimo: 1</span>
-      </div>
-      
-    </div>
+  <div>
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de emisión:</mat-label>
+    <input matInput [matDatepicker]="emisionPicker" formControlName="emision">
+    <mat-datepicker-toggle matSuffix [for]="emisionPicker"></mat-datepicker-toggle>
+    <mat-datepicker #emisionPicker></mat-datepicker>
+  </mat-form-field>
+  
+  <div [hidden]="emision.valid || emision.pristine" style="color: red;">
+    <span *ngIf="emision.errors?.['required']">El campo es requerido</span>
+  </div>
+</div>
 
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Fecha de emisión:</mat-label>
-        <input matInput [matDatepicker]="arrivalPicker" formControlName="emision">
-        <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
-        <mat-datepicker #arrivalPicker></mat-datepicker>
-      </mat-form-field>
-      
-      <div [hidden]="emision.valid || emision.pristine" style="color: red;">
-        <span *ngIf="emision.errors?.['required']">El campo es requerido</span>
-      </div>
-      
-    </div>
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de Validez:</mat-label>
+    <input matInput [matDatepicker]="validezPicker" formControlName="validez">
+    <mat-datepicker-toggle matSuffix [for]="validezPicker"></mat-datepicker-toggle>
+    <mat-datepicker #validezPicker></mat-datepicker>
+  </mat-form-field>
+  
+  <div [hidden]="validez.valid || validez.pristine" style="color: red;">
+    <span *ngIf="validez.errors?.['required']">El campo es requerido</span>
+  </div>
+</div>
 
     </form>
 

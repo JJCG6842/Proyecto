@@ -43,7 +43,8 @@
   padding: 10px 0;
   cursor: pointer;
 }
-.boton3{
+.boton3,
+.boton4{
   padding: 8px 12px;
   margin-right: 10px; 
   position: relative;
@@ -58,7 +59,10 @@
   cursor: pointer;
 }
 
-.boton1 {
+
+
+.boton1,
+.boton4 {
   background: rgb(33, 83, 247);
 }
 
@@ -70,7 +74,8 @@
   background: rgb(5, 221, 5);
 }
 
-.boton1:hover{
+.boton1:hover,
+.boton4:hover{
   background: rgb(59, 102, 245);
 }
 
