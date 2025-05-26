@@ -11,7 +11,8 @@ import { ReservaService } from '../../service/reserva.service';
 import { Reserva } from '../../interface/reserva.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { ReservaEditComponent } from './reserva-edit/reserva-edit.component';
-
+import { ReservaDeleteConfirmComponent } from '../../components/shared/modals-reserva/reserva-delete-confirm/reserva-delete-confirm.component';
+import { ReservaDeleteSucessComponent } from '../../components/shared/modals-reserva/reserva-delete-sucess/reserva-delete-sucess.component';
 
 @Component({
   selector: 'app-reserva',
@@ -40,17 +41,14 @@ export class ReservaComponent implements OnInit {
   constructor(private reservaService: ReservaService) {}
 
   ngOnInit() {
-    // Cargar reservas desde LocalStorage al cargar el componente
     this.obtenerReservas();
   }
 
   loadReservas() {
     const reservasFromStorage = localStorage.getItem('reservas');
     if (reservasFromStorage) {
-      // Si hay reservas guardadas en LocalStorage, las cargamos
       this.reservas = JSON.parse(reservasFromStorage);
     } else {
-      // Si no hay reservas en LocalStorage, las obtenemos desde el servidor
       this.obtenerReservas();
     }
   }
@@ -67,7 +65,6 @@ export class ReservaComponent implements OnInit {
             fechasalida: new Date(r.fechasalida)
           }));
 
-          // Guardar las reservas obtenidas en LocalStorage
           localStorage.setItem('reservas', JSON.stringify(this.reservas));
         } else {
           console.warn('No se pudieron obtener las reservas:', res.message);
@@ -79,33 +76,35 @@ export class ReservaComponent implements OnInit {
     });
   }
 
-  eliminarReserva(reserva: Reserva) {
-  const confirmacion = confirm(`¿Estás seguro de que deseas eliminar la reserva de ${reserva.nombre}?`);
+eliminarReserva(reserva: Reserva) {
+  this.dialog.open(ReservaDeleteConfirmComponent, {
+    width: '400px'
+  }).afterClosed().subscribe((confirmacion: boolean) => {
+    if (confirmacion) {
+      this.reservaService.eliminarReservaPorDni(reserva.dni).subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.reservas = this.reservas.filter(r => r.dni !== reserva.dni);
+            localStorage.setItem('reservas', JSON.stringify(this.reservas));
 
-  if (!confirmacion) return;
-
-  this.reservaService.eliminarReservaPorDni(reserva.dni).subscribe({
-    next: (res) => {
-      if (res.success) {
-        // Filtra la lista para eliminar visualmente la reserva
-        this.reservas = this.reservas.filter(r => r.dni !== reserva.dni);
-
-        // Actualiza el LocalStorage también
-        localStorage.setItem('reservas', JSON.stringify(this.reservas));
-
-        alert('✅ Reserva eliminada correctamente, actualize la tabla.');
-      } else {
-        alert('⚠️ ' + res.message);
-      }
-    },
-    error: (err) => {
-      console.error('Error al eliminar reserva:', err);
-      alert('❌ No se pudo eliminar la reserva.');
+            // Mostrar diálogo de éxito
+            this.dialog.open(ReservaDeleteSucessComponent, {
+              width: '300px'
+            });
+          } else {
+            alert('⚠️ ' + res.message); 
+          }
+        },
+        error: (err) => {
+          console.error('Error al eliminar reserva:', err);
+          alert('❌ No se pudo eliminar la reserva.'); 
+        }
+      });
     }
   });
 }
   
-  // Método para abrir el dialog y añadir una nueva reserva
+
   openDialog() {
     const dialogRef = this.dialog.open(ReservaDetailComponent, {
       width: '40%',
@@ -115,10 +114,9 @@ export class ReservaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Se ha cerrado el dialog con éxito y se ha agregado la reserva
-        this.reservas.push(result); // Agregar la nueva reserva a la lista
+        
+        this.reservas.push(result); 
 
-        // Actualizar LocalStorage
         localStorage.setItem('reservas', JSON.stringify(this.reservas));
       }
     });
@@ -133,12 +131,12 @@ export class ReservaComponent implements OnInit {
     width: '40%',
     maxWidth: 'none',
     panelClass: 'custom-dialog-container',
-    data: reserva  // ✅ Pasamos la reserva a editar
+    data: reserva 
   });
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      this.obtenerReservas();  // Actualizamos la tabla tras edición
+      this.obtenerReservas(); 
     }
   });
 }

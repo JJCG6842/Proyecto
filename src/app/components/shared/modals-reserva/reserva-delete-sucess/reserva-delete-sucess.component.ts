@@ -3,12 +3,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialog,MatDialogModule} from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-reserva-create-success',
-  imports: [MatDialogModule, MatButtonModule],
-  templateUrl: './reserva-create-success.component.html',
-  styleUrl: './reserva-create-success.component.scss',
+  selector: 'app-reserva-delete-sucess',
+  imports: [MatButtonModule,MatDialogModule],
+  templateUrl: './reserva-delete-sucess.component.html',
+  styleUrl: './reserva-delete-sucess.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReservaCreateSuccessComponent {
-
+export class ReservaDeleteSucessComponent {
+  
 }

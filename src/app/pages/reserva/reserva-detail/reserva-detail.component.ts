@@ -14,6 +14,8 @@ import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog
 import { Reserva } from '../../../interface/reserva.interface';
 import { ReservaService } from '../../../service/reserva.service';
 import { ReservaComponent } from '../reserva.component';
+import { ReservaCreateSuccessComponent } from '../../../components/shared/modals-reserva/reserva-create-success/reserva-create-success.component';
+import { ReservaCreateErrorComponent } from '../../../components/shared/modals-reserva/reserva-create-error/reserva-create-error.component';
 
 
 @Component({
@@ -31,7 +33,8 @@ export class ReservaDetailComponent {
   private router: Router,
   private fb: FormBuilder,
   private reservaService: ReservaService,
-  private dialogRef: MatDialogRef<ReservaDetailComponent>
+  private dialogRef: MatDialogRef<ReservaDetailComponent>,
+  private dialog: MatDialog
 ) {
   this.formReserva = this.fb.group({
     name: ['', Validators.required],
@@ -89,21 +92,27 @@ export class ReservaDetailComponent {
   };
 
   this.reservaService.crearReserva(reservaData).subscribe({
-    next: (res) => {
-      if (res.success) {
-        alert('✅ Reserva registrada correctamente, actualize la tabla.');
-        this.dialogRef.close(res.data);
-        
-         // ← envía la reserva creada al componente padre
-      } else {
-        alert('⚠️ ' + res.message);
-      }
-    },
-    error: (err) => {
-      console.error('Error al registrar reserva:', err);
-      alert('❌ Error del servidor');
+  next: (res) => {
+    if (res.success) {
+      this.dialogRef.close(res.data); 
+
+      this.dialog.open(ReservaCreateSuccessComponent, {
+        width: '30%',
+        panelClass: 'custom-dialog-container'
+      });
+    } else {
+      alert('⚠️ ' + res.message);
     }
+  },
+  error: (err) => {
+  console.error('Error al registrar reserva:', err);
+  
+  this.dialog.open(ReservaCreateErrorComponent, {
+    width: '30%',
+    panelClass: 'custom-dialog-container'
   });
+}
+});
 }
 
 }

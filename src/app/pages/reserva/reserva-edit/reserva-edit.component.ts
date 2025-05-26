@@ -14,6 +14,8 @@ import {MatDialog, MatDialogModule, MatDialogRef,MAT_DIALOG_DATA} from '@angular
 import { Reserva } from '../../../interface/reserva.interface';
 import { ReservaService } from '../../../service/reserva.service';
 import { ReservaComponent } from '../reserva.component';
+import { ReservaEditSucessComponent } from '../../../components/shared/modals-reserva/reserva-edit-sucess/reserva-edit-sucess.component';
+import { ReservaEditErrorComponent } from '../../../components/shared/modals-reserva/reserva-edit-error/reserva-edit-error.component';
 
 @Component({
   selector: 'app-reserva-edit',
@@ -29,6 +31,7 @@ formReserva!: FormGroup;
   private fb: FormBuilder,
   private reservaService: ReservaService,
   private dialogRef: MatDialogRef<ReservaEditComponent>,
+  private dialog:MatDialog,
   @Inject(MAT_DIALOG_DATA) public data: Reserva  
 ) {
   this.formReserva = this.fb.group({
@@ -89,15 +92,22 @@ formReserva!: FormGroup;
   this.reservaService.editarReserva(this.data.id!, updatedReserva).subscribe({
     next: (res) => {
       if (res.success) {
-        alert('✅ Reserva editada correctamente,actualize la tabla.');
         this.dialogRef.close(res.data);  
-      } else {
+
+        this.dialog.open(ReservaEditSucessComponent, {
+        width: '30%',
+        panelClass: 'custom-dialog-container'
+      });
+} else {
         alert('⚠️ ' + res.message);
       }
     },
     error: (err) => {
-      console.error('Error al editar reserva:', err);
-      alert('❌ Error al actualizar la reserva.');
+    console.error('Error al editar reserva:', err);
+    this.dialog.open(ReservaEditErrorComponent, {
+    width: '30%',
+    panelClass: 'custom-dialog-container'
+    });
     }
   });
 }
