@@ -8,9 +8,6 @@ import {
   isFakeTouchstartFromScreenReader
 } from "./chunk-YH4EN4VO.js";
 import {
-  BidiModule
-} from "./chunk-LIBEUXTK.js";
-import {
   _CdkPrivateStyleLoader,
   _VisuallyHiddenLoader
 } from "./chunk-NW7JBIRY.js";
@@ -21,6 +18,9 @@ import {
   coerceElement,
   normalizePassiveListenerOptions
 } from "./chunk-63H67EWS.js";
+import {
+  BidiModule
+} from "./chunk-LIBEUXTK.js";
 import {
   DOCUMENT
 } from "./chunk-IY42WUIH.js";
@@ -2262,4 +2262,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-OEQ2OEZX.js.map
+//# sourceMappingURL=chunk-RXWJ4IS6.js.map

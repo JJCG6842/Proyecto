@@ -7,6 +7,8 @@ import { CotizacionDetailComponent } from '../cotizacion-detail/cotizacion-detai
 import { CotizacionService } from '../../../service/cotizacion.service';
 import { Cotizacion } from '../../../interface/cotizacion.interface';
 import { CommonModule } from '@angular/common';
+import { CotizacionDeleteSuccessComponent } from '../../../components/shared/cotizacion-modals/cotizacion-delete-success/cotizacion-delete-success.component';
+import { CotizacionDeleteWarningComponent } from '../../../components/shared/cotizacion-modals/cotizacion-delete-warning/cotizacion-delete-warning.component';
 
 @Component({
   selector: 'app-lista-cotizaciones',
@@ -51,7 +53,7 @@ cargarCotizaciones() {
     this.cotizacionService.getCotizaciones().subscribe({
       next: (res) => {
         this.cotizaciones = res.data;
-        this.cdr.markForCheck(); // <-- asegura que Angular detecte cambios
+        this.cdr.markForCheck(); 
       },
       error: () => {
         console.error('Error al obtener cotizaciones');
@@ -60,17 +62,21 @@ cargarCotizaciones() {
   }
 
 eliminarCotizacion(id: string) {
-  if (confirm('¿Estás seguro de eliminar esta cotización?')) {
-    this.cotizacionService.deleteCotizacion(id).subscribe({
-      next: () => {
-        this.cotizaciones = this.cotizaciones.filter(c => c._id !== id);
-        alert('Cotización eliminada');
-      },
-      error: () => {
-        alert('Error al eliminar la cotización');
-      }
-    });
-  }
+  const dialogRef = this.dialog.open(CotizacionDeleteWarningComponent);
+
+  dialogRef.afterClosed().subscribe((confirmado: boolean) => {
+    if (confirmado) {
+      this.cotizacionService.deleteCotizacion(id).subscribe({
+        next: () => {
+          this.cotizaciones = this.cotizaciones.filter(c => c._id !== id);
+          this.dialog.open(CotizacionDeleteSuccessComponent);
+        },
+        error: () => {
+          alert('Error al eliminar la cotización');
+        }
+      });
+    }
+  });
 }
 
   goBack(){

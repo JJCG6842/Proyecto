@@ -108,11 +108,7 @@ export class MenuComponent {
       label:'Reserva',
       route:'reserva'
     },
-    {
-      icon:'person',
-      label:'Clientes',
-      route:'clientes'
-    },
+    
   ])
 
   profilePicSize = computed(()=>

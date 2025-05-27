@@ -13,7 +13,9 @@ import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CotizacionService } from '../../service/cotizacion.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { CotizacionCreateSuccessComponent } from '../../components/shared/cotizacion-modals/cotizacion-create-success/cotizacion-create-success.component';
+import { CotizacionCreateErrorComponent } from '../../components/shared/cotizacion-modals/cotizacion-create-error/cotizacion-create-error.component';
 
 
 @Component({
@@ -41,7 +43,7 @@ export class CotizacionesComponent {
   formCotizacion!: FormGroup;
 
   constructor(private router: Router, private fb: FormBuilder, 
-    private cotizacionService:CotizacionService) {
+    private cotizacionService:CotizacionService, private dialog: MatDialog) {
     this.formCotizacion = this.fb.group({
       cliente:['', Validators.required],
       destino: ['', Validators.required],
@@ -107,13 +109,11 @@ export class CotizacionesComponent {
     next: (response) => {
       console.log('Cotización creada:', response);
 
-      // ✅ Navegar solo si se registró correctamente
-      alert('Cotización registrada con éxito');
-      this.router.navigate(['/lista-cotizaciones']);
+      this.dialog.open(CotizacionCreateSuccessComponent);
     },
     error: (error) => {
       console.error('Error al crear cotización:', error);
-      alert('Error al registrar la cotización');
+      this.dialog.open(CotizacionCreateErrorComponent);
     }
   });
 }

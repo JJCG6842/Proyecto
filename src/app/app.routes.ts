@@ -36,10 +36,7 @@ export const routes: Routes = [
     path:'reserva',
     component:ReservaComponent
   },
-  {
-    path:'clientes',
-    component: ClientesComponent
-  },
+  
   { path: 'lista-cotizaciones', 
     component: ListaCotizacionesComponent },
   {
