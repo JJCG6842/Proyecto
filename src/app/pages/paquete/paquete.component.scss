@@ -26,4 +26,58 @@ button:hover{
     box-sizing: border-box;
   }
 
+.boton1,
+.boton2{
+  padding: 8px 16px;
+  margin-right: 10px; 
+  width: 90px;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  padding: 10px 0;
+  cursor: pointer;
+}
 
+.boton3,
+.boton4{
+  padding: 8px 12px;
+  margin-right: 10px; 
+  position: relative;
+  top: 16px;
+  width: 200px;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.boton1,
+.boton4 {
+  background: rgb(33, 83, 247);
+}
+
+.boton2 {
+  background: rgb(252, 27, 27);
+}
+
+.boton3 {
+  background: rgb(5, 221, 5);
+}
+
+.boton1:hover,
+.boton4:hover{
+  background: rgb(59, 102, 245);
+}
+
+.boton2:hover{
+  background: rgb(243, 47, 47);
+}
+
+.boton3:hover{
+  background: rgb(41, 238, 41);
+}

@@ -1,16 +1,18 @@
-<div class="card-container">
-    @for (item of turismo; track item.id) {
+<div class="card-container">  
     <mat-card appearance="outlined">
-        <img mat-card-image src={{item.imageUrl}}>
+        <img mat-card-image src="">
         <mat-card-content>
-            <h3>{{item.name}}</h3>
-            <p><b>Duracion:</b> {{item.duration}}</p>
-            <p><b>Inicio:</b> {{item.inicio}} | {{item.retorno}}</p>
-            <button mat-flat-button style="background: red; color: white;" [routerLink]="[item.id]">
-                Mas Información
-            </button>
+            <h3>Nombre</h3>
+            <p><b>Duracion:</b> </p>
+            <p><b>Inicio:</b> </p>
+            <p><b>Retorno:</b></p>
+            <p><b>Costo:</b> </p>
+            <p><b>Descripcion:</b> </p>
+            <button class="boton1">Editar</button>
+            <button class="boton2">Eliminar</button>
         </mat-card-content>
     </mat-card>
-}
 </div>
+
 <br><br>
+

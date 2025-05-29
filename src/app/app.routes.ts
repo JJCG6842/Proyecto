@@ -30,7 +30,7 @@ export const routes: Routes = [
     component:PaqueteComponent
   },
   {
-    path:'paquete/:id', component:PaqueteDetailComponent
+    path:'paquete-detail', component:PaqueteDetailComponent
   },
   {
     path:'reserva',
