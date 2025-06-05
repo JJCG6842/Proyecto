@@ -1,17 +1,29 @@
-<div class="card-container">  
-    <mat-card appearance="outlined">
-        <img mat-card-image src="">
-        <mat-card-content>
-            <h3>Nombre</h3>
-            <p><b>Duracion:</b> </p>
-            <p><b>Inicio:</b> </p>
-            <p><b>Retorno:</b></p>
-            <p><b>Costo:</b> </p>
-            <p><b>Descripcion:</b> </p>
-            <button class="boton1">Editar</button>
-            <button class="boton2">Eliminar</button>
-        </mat-card-content>
-    </mat-card>
+<div>
+  <div class="jeje">
+    <h2>Tours Disponibles:</h2>
+    <div style="gap: 0px; display: flex;">
+      <button class="boton3" (click)="openAdd()">Agregar tour</button>
+      <button class="boton4" (click)="refresh()">
+      Actualizar lista
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="card-container">
+  <mat-card *ngFor="let tour of tours" appearance="outlined">
+    <img mat-card-image [src]="tour.imagenUrl" alt="{{ tour.name }}" />
+    <mat-card-content>
+      <h3>{{ tour.name }}</h3>
+      <p><b>Duración:</b> {{ tour.duration }}</p>
+      <p><b>Inicio:</b> {{ tour.inicio | date: 'shortTime' }}</p>
+      <p><b>Retorno:</b> {{ tour.retorno | date: 'shortTime' }}</p>
+      <p><b>Costo:</b> S/ {{ tour.price }}</p>
+      <p><b>Descripción:</b> {{ tour.description }}</p>
+      <button class="boton1" (click)="openEdit(tour)">Editar</button>
+      <button class="boton2" (click)="eliminarTour(tour._id!)">Eliminar</button>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 <br><br>

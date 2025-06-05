@@ -9,6 +9,7 @@ import { ListaCotizacionesComponent } from './pages/cotizaciones/lista-cotizacio
 import { ReservaDetailComponent } from './pages/reserva/reserva-detail/reserva-detail.component';
 import { ReservaEditComponent } from './pages/reserva/reserva-edit/reserva-edit.component';
 import { CotizacionDetailComponent } from './pages/cotizaciones/cotizacion-detail/cotizacion-detail.component';
+import { PaqueteEditComponent } from './pages/paquete/paquete-edit/paquete-edit.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,10 @@ export const routes: Routes = [
   {
     path:'cotizacion-detail',
     component: CotizacionDetailComponent,
+  },
+  {
+    path:'paquete-edit',
+    component:PaqueteEditComponent,
   }
 
 ];

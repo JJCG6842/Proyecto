@@ -1,4 +1,4 @@
-import { Component,signal} from '@angular/core';
+import { Component,signal,inject} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTimepickerModule} from '@angular/material/timepicker';
 import { Router } from '@angular/router';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { ChangeDetectorRef } from '@angular/core';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CommonModule } from '@angular/common';
@@ -28,6 +29,7 @@ import { ReservaCreateErrorComponent } from '../../../components/shared/modals-r
 })
 export class ReservaDetailComponent {
   formReserva!: FormGroup;
+  readonly cd = inject(ChangeDetectorRef);
 
   constructor(
   private router: Router,
@@ -95,7 +97,6 @@ export class ReservaDetailComponent {
   next: (res) => {
     if (res.success) {
       this.dialogRef.close(res.data); 
-
       this.dialog.open(ReservaCreateSuccessComponent, {
         width: '30%',
         panelClass: 'custom-dialog-container'

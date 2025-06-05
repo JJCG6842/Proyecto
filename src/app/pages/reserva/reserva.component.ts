@@ -1,4 +1,4 @@
-import { Component,inject,ChangeDetectionStrategy, OnInit} from '@angular/core';
+import { Component,inject,ChangeDetectionStrategy, OnInit,ChangeDetectorRef} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { Router } from '@angular/router';
@@ -27,6 +27,7 @@ import { ReservaDeleteSucessComponent } from '../../components/shared/modals-res
 export class ReservaComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   reservas: Reserva[] = [];
+  readonly cd = inject(ChangeDetectorRef);
   destinos: { [key: string]: string } = {
     one: 'Libertad Americana (Wari)',
     dos: 'City Tour Tradicional (Huamanga)',
@@ -64,7 +65,7 @@ export class ReservaComponent implements OnInit {
             fechallegada: new Date(r.fechallegada),
             fechasalida: new Date(r.fechasalida)
           }));
-
+          this.cd.markForCheck()
           localStorage.setItem('reservas', JSON.stringify(this.reservas));
         } else {
           console.warn('No se pudieron obtener las reservas:', res.message);

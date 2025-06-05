@@ -3,6 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tour } from '../interface/tour.interface';
 
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+  error?: string;
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -11,19 +18,19 @@ export class ToursService {
 
     constructor(private http: HttpClient) {}
 
-  getTours(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
-  }
+  getTours(): Observable<ApiResponse<Tour[]>> {
+  return this.http.get<ApiResponse<Tour[]>>(this.apiUrl);
+}
 
-  createTour(tour: Tour): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/create`, tour);
-  }
+createTour(tour: Tour): Observable<ApiResponse<Tour>> {
+  return this.http.post<ApiResponse<Tour>>(`${this.apiUrl}/create`, tour);
+}
 
-  updateTour(id: string, tour: Partial<Tour>): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/${id}`, tour);
-  }
+updateTour(id: string, tour: Partial<Tour>): Observable<ApiResponse<Tour>> {
+  return this.http.patch<ApiResponse<Tour>>(`${this.apiUrl}/${id}`, tour);
+}
 
-  deleteTour(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
-  }
+deleteTour(id: string): Observable<ApiResponse<Tour>> {
+  return this.http.delete<ApiResponse<Tour>>(`${this.apiUrl}/${id}`);
+}
 }
