@@ -22,17 +22,11 @@
       <mat-form-field>
         <mat-label>Destinos Turísticos</mat-label>
         <mat-select formControlName="destino">
-          <mat-option value="Libertad Americana (Wari)">Libertad Americana (Wari)</mat-option>
-          <mat-option value="City Tour Tradicional (Huamanga)">City Tour Tradicional (Huamanga)</mat-option>
-          <mat-option value="Aguas Turquesas Millpu">Aguas Turquesas Millpu</mat-option>
-          <mat-option value="Laguna Azul (El Caribe Andino)">Laguna Azul (El Caribe Andino)</mat-option>
-          <mat-option value="Ruta del Inca - Vilcashuamán">Ruta del Inca - Vilcashuamán</mat-option>
-          <mat-option value="Piscinas Termales - Colpa">Piscinas Termales - Colpa</mat-option>
-          <mat-option value="Aguas Termales - Pachapupum">Aguas Termales - Pachapupum</mat-option>
-          <mat-option value="Cañones de Qorihuillca - Grietas">Cañones de Qorihuillca - Grietas</mat-option>
+        <mat-option *ngFor="let tour of tours" [value]="tour.name">
+          {{ tour.name }}
+        </mat-option>
         </mat-select>
       </mat-form-field>
-      
       <div [hidden]="destino.valid || destino.pristine" style="color: red;">
         <span *ngIf="destino.errors?.['required']">El campo es requerido</span>
       </div>

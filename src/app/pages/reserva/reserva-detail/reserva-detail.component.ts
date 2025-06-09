@@ -17,6 +17,9 @@ import { ReservaService } from '../../../service/reserva.service';
 import { ReservaComponent } from '../reserva.component';
 import { ReservaCreateSuccessComponent } from '../../../components/shared/modals-reserva/reserva-create-success/reserva-create-success.component';
 import { ReservaCreateErrorComponent } from '../../../components/shared/modals-reserva/reserva-create-error/reserva-create-error.component';
+import { ToursService } from '../../../service/tours.service';
+import { Tour } from '../../../interface/tour.interface';
+import { OnInit } from '@angular/core';
 
 
 @Component({
@@ -27,27 +30,52 @@ import { ReservaCreateErrorComponent } from '../../../components/shared/modals-r
   styleUrl: './reserva-detail.component.scss',
   providers: [provideNativeDateAdapter()]
 })
-export class ReservaDetailComponent {
+export class ReservaDetailComponent implements OnInit{
   formReserva!: FormGroup;
+  tours: Tour[] = [];
+
   readonly cd = inject(ChangeDetectorRef);
 
   constructor(
-  private router: Router,
-  private fb: FormBuilder,
-  private reservaService: ReservaService,
-  private dialogRef: MatDialogRef<ReservaDetailComponent>,
-  private dialog: MatDialog
-) {
-  this.formReserva = this.fb.group({
-    name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    dni: ['', Validators.required],
-    destino: ['', Validators.required],
-    horainicio: ['', Validators.required],
-    fechallegada: ['', Validators.required],
-    fechasalida: ['', Validators.required],
-  });
-}
+    private router: Router,
+    private fb: FormBuilder,
+    private reservaService: ReservaService,
+    private dialogRef: MatDialogRef<ReservaDetailComponent>,
+    private toursService: ToursService,
+    private dialog: MatDialog
+  ) {
+    this.formReserva = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      dni: ['', Validators.required],
+      destino: ['', Validators.required],
+      horainicio: ['', Validators.required],
+      fechallegada: ['', Validators.required],
+      fechasalida: ['', Validators.required],
+    });
+  }
+
+  ngOnInit(): void {
+    this.toursService.getTours().subscribe((res) => {
+      if (res.success) {
+        this.tours = res.data;
+
+        // 🧠 Lógica para llenar hora al elegir destino
+        this.formReserva.get('destino')?.valueChanges.subscribe((selectedName: string) => {
+          const selectedTour = this.tours.find(t => t.name === selectedName);
+          if (selectedTour) {
+            this.formReserva.patchValue({
+              horainicio: selectedTour.inicio
+            });
+          }
+        });
+
+      } else {
+        alert('Error al cargar los tours disponibles');
+      }
+    });
+  }
+
 
   get name(){
     return this.formReserva.get('name') as FormControl;

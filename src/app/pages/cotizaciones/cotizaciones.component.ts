@@ -16,6 +16,8 @@ import { CotizacionService } from '../../service/cotizacion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CotizacionCreateSuccessComponent } from '../../components/shared/cotizacion-modals/cotizacion-create-success/cotizacion-create-success.component';
 import { CotizacionCreateErrorComponent } from '../../components/shared/cotizacion-modals/cotizacion-create-error/cotizacion-create-error.component';
+import { ToursService } from '../../service/tours.service'; 
+import { Tour } from '../../interface/tour.interface';
 
 
 @Component({
@@ -41,9 +43,10 @@ import { CotizacionCreateErrorComponent } from '../../components/shared/cotizaci
 export class CotizacionesComponent {
 
   formCotizacion!: FormGroup;
+  tours: Tour[] = [];
 
   constructor(private router: Router, private fb: FormBuilder, 
-    private cotizacionService:CotizacionService, private dialog: MatDialog) {
+    private cotizacionService:CotizacionService, private dialog: MatDialog,private toursService: ToursService) {
     this.formCotizacion = this.fb.group({
       cliente:['', Validators.required],
       destino: ['', Validators.required],
@@ -56,6 +59,28 @@ export class CotizacionesComponent {
       validez: ['',Validators.required],
     });
   }
+
+  ngOnInit(): void {
+  this.toursService.getTours().subscribe((res) => {
+    if (res.success) {
+      this.tours = res.data;
+
+      this.formCotizacion.get('destino')?.valueChanges.subscribe((selectedName: string) => {
+        const selectedTour = this.tours.find(t => t.name === selectedName);
+        if (selectedTour) {
+          this.formCotizacion.patchValue({
+            horainicio: selectedTour.inicio,
+            horaretorno: selectedTour.retorno,
+            costo: selectedTour.price
+          });
+        }
+      });
+
+    } else {
+      alert('❌ Error al cargar los tours.');
+    }
+  });
+}
 
   verRegistro() {
     this.router.navigate(['/lista-cotizaciones']);

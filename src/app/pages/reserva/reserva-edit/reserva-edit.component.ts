@@ -16,6 +16,10 @@ import { ReservaService } from '../../../service/reserva.service';
 import { ReservaComponent } from '../reserva.component';
 import { ReservaEditSucessComponent } from '../../../components/shared/modals-reserva/reserva-edit-sucess/reserva-edit-sucess.component';
 import { ReservaEditErrorComponent } from '../../../components/shared/modals-reserva/reserva-edit-error/reserva-edit-error.component';
+import { ToursService } from '../../../service/tours.service';
+import { Tour } from '../../../interface/tour.interface';
+import { OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-reserva-edit',
@@ -24,13 +28,15 @@ import { ReservaEditErrorComponent } from '../../../components/shared/modals-res
   templateUrl: './reserva-edit.component.html',
   styleUrl: './reserva-edit.component.scss'
 })
-export class ReservaEditComponent {
+export class ReservaEditComponent implements OnInit{
 formReserva!: FormGroup;
+tours: Tour[] = [];
 
   constructor(
   private fb: FormBuilder,
   private reservaService: ReservaService,
   private dialogRef: MatDialogRef<ReservaEditComponent>,
+  private toursService: ToursService,
   private dialog:MatDialog,
   @Inject(MAT_DIALOG_DATA) public data: Reserva  
 ) {
@@ -44,6 +50,26 @@ formReserva!: FormGroup;
     fechasalida: [new Date(data.fechasalida), Validators.required],
   });
 }
+
+ngOnInit(): void {
+    this.toursService.getTours().subscribe((res) => {
+      if (res.success) {
+        this.tours = res.data;
+
+        this.formReserva.get('destino')?.valueChanges.subscribe((selectedName: string) => {
+          const selectedTour = this.tours.find(t => t.name === selectedName);
+          if (selectedTour) {
+            this.formReserva.patchValue({
+              horainicio: selectedTour.inicio
+            });
+          }
+        });
+
+      } else {
+        alert('Error al cargar los tours disponibles');
+      }
+    });
+  }
 
   get name(){
     return this.formReserva.get('name') as FormControl;

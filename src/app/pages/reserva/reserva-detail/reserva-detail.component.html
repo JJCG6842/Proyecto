@@ -43,14 +43,9 @@
           <mat-form-field appearance="fill">
             <mat-label>Destino Turístico</mat-label>
             <mat-select formControlName="destino">
-              <mat-option value="Libertad Americana (wari)">Libertad Americana (wari)</mat-option>
-              <mat-option value="City Tour Tradicional (Huamanga)">City Tour Tradicional (Huamanga)</mat-option>
-              <mat-option value="Aguas Turquesas Millpu">Aguas Turquesas Millpu</mat-option>
-              <mat-option value="Laguna Azul (el caribe andino)">Laguna Azul (el caribe andino)</mat-option>
-              <mat-option value="Ruta del Inca - Vilcashuaman">Ruta del Inca - Vilcashuaman</mat-option>
-              <mat-option value="Piscinas Termales - Colpa">Piscinas Termales - Colpa</mat-option>
-              <mat-option value="Aguas Termales - Pachapupum">Aguas Termales - Pachapupum</mat-option>
-              <mat-option value="Cañones de Qorihuillca - grietas">Cañones de Qorihuillca - grietas</mat-option>
+            <mat-option *ngFor="let tour of tours" [value]="tour.name">
+              {{ tour.name }}
+            </mat-option>
             </mat-select>
           </mat-form-field>
           <div [hidden]="destino.valid || destino.pristine" class="error">
@@ -62,7 +57,7 @@
         <div class="form-field">
           <mat-form-field appearance="fill">
             <mat-label>Hora de inicio</mat-label>
-            <input matInput [matTimepicker]="timePicker" formControlName="horainicio" />
+            <input matInput  [matTimepicker]="timePicker" formControlName="horainicio" />
             <mat-timepicker-toggle matIconSuffix [for]="timePicker"></mat-timepicker-toggle>
             <mat-timepicker #timePicker></mat-timepicker>
           </mat-form-field>
