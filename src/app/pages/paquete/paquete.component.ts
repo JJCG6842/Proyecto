@@ -9,11 +9,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PaqueteEditComponent } from './paquete-edit/paquete-edit.component';
 import { TourDeleteWarningComponent } from '../../components/shared/tours-modals/tour-delete-warning/tour-delete-warning.component';
 import { TourDeleteSuccessComponent } from '../../components/shared/tours-modals/tour-delete-success/tour-delete-success.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-paquete',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule, MatDialogModule],
+  imports: [MatCardModule, MatButtonModule, CommonModule, MatDialogModule,FormsModule],
   templateUrl: './paquete.component.html',
   styleUrl: './paquete.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,6 +31,7 @@ export class PaqueteComponent implements OnInit {
       if (res.success) {
         this.tours = res.data;
         this.cd.markForCheck()
+        this.cargarTours();
       } else {
         console.error('Error al obtener tours', res.message);
       }
@@ -110,7 +112,39 @@ export class PaqueteComponent implements OnInit {
   });
 }
 
+searchTerm = '';
+
+buscarTour() {
+  const term = this.searchTerm.trim();
+
+  if (term.length === 0) {
+    // Si está vacío, recarga todos los tours
+    this.cargarTours();
+    return;
+  }
+
+  this.toursService.getToursByName(term).subscribe((res) => {
+    if (res.success) {
+      this.tours = res.data instanceof Array ? res.data : [res.data];
+    } else {
+      this.tours = []; // limpia si no encuentra resultados
+    }
+    this.cd.markForCheck();
+  });
+}
+
+cargarTours() {
+  this.toursService.getTours().subscribe((res) => {
+    if (res.success) {
+      this.tours = res.data;
+      this.cd.markForCheck();
+    }
+  });
+}
+
+
 refresh(){
   
 }
+
 }

@@ -22,6 +22,10 @@ export class ToursService {
   return this.http.get<ApiResponse<Tour[]>>(this.apiUrl);
 }
 
+getToursByName(name: string): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/name/${name}`);
+}
+
 createTour(tour: Tour): Observable<ApiResponse<Tour>> {
   return this.http.post<ApiResponse<Tour>>(`${this.apiUrl}/create`, tour);
 }

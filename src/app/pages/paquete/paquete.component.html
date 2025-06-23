@@ -10,6 +10,11 @@
   </div>
 </div>
 
+  <div class="busqueda">
+  <h2>Busqueda de tour:</h2><input class="input" placeholder="Buscar tour"[(ngModel)]="searchTerm"
+    (input)="buscarTour()">
+  </div>
+
 <div class="card-container">
   <mat-card *ngFor="let tour of tours" appearance="outlined">
     <img mat-card-image [src]="tour.imagenUrl" alt="{{ tour.name }}" />
