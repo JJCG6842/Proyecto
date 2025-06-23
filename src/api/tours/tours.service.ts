@@ -44,6 +44,33 @@ export class ToursService {
         }
     }
 
+    async findTourByName(name: string) {
+  try {
+    const tour = await this.TourModel.findOne({ name: new RegExp(name, 'i') });
+    if (!tour) {
+      return {
+        success: false,
+        message: 'Tour no encontrado',
+        data: null,
+      };
+    }
+
+    return {
+      success: true,
+      message: 'Tour encontrado correctamente',
+      data: tour,
+    };
+  } catch (error) {
+    console.error('Error al buscar tour por nombre:', error);
+    return {
+      success: false,
+      message: 'Error al buscar tour',
+      data: null,
+      error: error.message,
+    };
+  }
+}
+
     async UpdateTour(id: string, data:UpdateTourDto){
         try{
             const updated = await this.TourModel.findByIdAndUpdate(id, data, {

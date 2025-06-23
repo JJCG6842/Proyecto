@@ -18,6 +18,11 @@ export class ToursController {
         return await this.tourService.findAllTours();
     }
 
+    @Get('name/:name')
+    async getTourByName(@Param('name') name: string) {
+    return await this.tourService.findTourByName(name);
+}
+
     @Patch(':id')
     async updateTour(@Param('id') id:string, @Body() data:UpdateTourDto ){
         return await this.tourService.UpdateTour(id, data);
